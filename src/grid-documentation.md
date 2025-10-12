@@ -44,7 +44,10 @@ The `.grid` class is the heart of the system. Its default behavior is to create 
 The magic behind the auto-responsive grid is this line:
 
 ```css
-grid-template-columns: repeat(var(--grid-placement, auto-fit), minmax(var(--grid-min-item-size, 16rem), 1fr));
+grid-template-columns: repeat(
+	var(--grid-placement, auto-fit),
+	minmax(var(--grid-min-item-size, 16rem), 1fr)
+);
 ```
 
 - `repeat(auto-fit, ...)`: Creates as many columns as will fit, and collapses any empty column tracks, allowing filled tracks to expand and take up the remaining space.
@@ -54,11 +57,11 @@ grid-template-columns: repeat(var(--grid-placement, auto-fit), minmax(var(--grid
 
 ```html
 <div class="grid gap-4" style="--grid-min-item-size: 15rem;">
-  <div class="card">Item 1</div>
-  <div class="card">Item 2</div>
-  <div class="card">Item 3</div>
-  <div class="card">Item 4</div>
-  <div class="card">Item 5</div>
+	<div class="card">Item 1</div>
+	<div class="card">Item 2</div>
+	<div class="card">Item 3</div>
+	<div class="card">Item 4</div>
+	<div class="card">Item 5</div>
 </div>
 ```
 
@@ -71,12 +74,12 @@ For more explicit control, you can use the `data-cols="N"` attribute to specify 
 ```html
 <!-- This grid will aim for a 4-column layout -->
 <div class="grid gap-4" data-cols="4">
-  <div class="card">1</div>
-  <div class="card">2</div>
-  <div class="card">3</div>
-  <div class="card">4</div>
-  <div class="card">5</div>
-  <!-- Wraps to the next row -->
+	<div class="card">1</div>
+	<div class="card">2</div>
+	<div class="card">3</div>
+	<div class="card">4</div>
+	<div class="card">5</div>
+	<!-- Wraps to the next row -->
 </div>
 ```
 
@@ -88,11 +91,11 @@ You can make an item span multiple tracks using the `data-span` and `data-row-sp
 
 ```html
 <div class="grid gap-4" data-cols="3">
-  <!-- This item will take up the space of 2 columns -->
-  <div class="card" data-span="2">Featured Item</div>
-  <div class="card">Regular Item</div>
-  <div class="card">Another Regular</div>
-  <div class="card">And Another</div>
+	<!-- This item will take up the space of 2 columns -->
+	<div class="card" data-span="2">Featured Item</div>
+	<div class="card">Regular Item</div>
+	<div class="card">Another Regular</div>
+	<div class="card">And Another</div>
 </div>
 ```
 
@@ -102,11 +105,11 @@ When using spans, the default grid algorithm might leave gaps. By adding the `.g
 
 ```html
 <div class="grid grid--dense gap-4" data-cols="4">
-  <div class="card" data-span="2">Wide Item</div>
-  <div class="card" data-row-span="2">Tall Item</div>
-  <div class="card">Small Item 1</div>
-  <div class="card">Small Item 2</div>
-  <div class="card">Small Item 3 (might backfill a gap)</div>
+	<div class="card" data-span="2">Wide Item</div>
+	<div class="card" data-row-span="2">Tall Item</div>
+	<div class="card">Small Item 1</div>
+	<div class="card">Small Item 2</div>
+	<div class="card">Small Item 3 (might backfill a gap)</div>
 </div>
 ```
 
@@ -123,17 +126,17 @@ To use it, the direct child of the main grid must become a grid container itself
 ```scss
 /* In your component's CSS */
 .subgrid-card {
-  display: grid;
-  /* This card's columns will be a subgrid of its parent */
-  grid-template-columns: subgrid;
+	display: grid;
+	/* This card's columns will be a subgrid of its parent */
+	grid-template-columns: subgrid;
 
-  /* The card itself must span columns in the parent grid */
-  grid-column: span 2; /* Or whatever is needed */
+	/* The card itself must span columns in the parent grid */
+	grid-column: span 2; /* Or whatever is needed */
 
-  /* You can also target all direct children to align them */
-  > * {
-    grid-column: 1 / -1; /* Default to full span within the subgrid */
-  }
+	/* You can also target all direct children to align them */
+	> * {
+		grid-column: 1 / -1; /* Default to full span within the subgrid */
+	}
 }
 ```
 
@@ -141,28 +144,28 @@ To use it, the direct child of the main grid must become a grid container itself
 
 ```html
 <div class="grid gap-4" data-cols="3">
-  <article class="card">
-    <h3>Standard Card</h3>
-    <p>This content is aligned internally.</p>
-  </article>
+	<article class="card">
+		<h3>Standard Card</h3>
+		<p>This content is aligned internally.</p>
+	</article>
 
-  <!-- This card spans 2 parent columns and creates a subgrid -->
-  <article class="card subgrid-card" data-span="2">
-    <!-- This title can span the full 2 columns of the subgrid -->
-    <h3 class="subgrid-title" style="grid-column: 1 / -1;">Subgrid Card</h3>
+	<!-- This card spans 2 parent columns and creates a subgrid -->
+	<article class="card subgrid-card" data-span="2">
+		<!-- This title can span the full 2 columns of the subgrid -->
+		<h3 class="subgrid-title" style="grid-column: 1 / -1;">Subgrid Card</h3>
 
-    <!-- This div is placed in the first track of the subgrid -->
-    <div class="card">
-      <h4>Sub-item A</h4>
-      <p>Aligns with parent grid column 2.</p>
-    </div>
+		<!-- This div is placed in the first track of the subgrid -->
+		<div class="card">
+			<h4>Sub-item A</h4>
+			<p>Aligns with parent grid column 2.</p>
+		</div>
 
-    <!-- This div is placed in the second track of the subgrid -->
-    <div class="card">
-      <h4>Sub-item B</h4>
-      <p>Aligns with parent grid column 3.</p>
-    </div>
-  </article>
+		<!-- This div is placed in the second track of the subgrid -->
+		<div class="card">
+			<h4>Sub-item B</h4>
+			<p>Aligns with parent grid column 3.</p>
+		</div>
+	</article>
 </div>
 ```
 
@@ -181,22 +184,22 @@ Let's define a card that is normally a flex column, but switches to a horizontal
 ```scss
 /* The component itself is a container */
 .cq-card {
-  container-type: inline-size;
-  container-name: card; /* Naming is optional but good practice */
+	container-type: inline-size;
+	container-name: card; /* Naming is optional but good practice */
 }
 
 .cq-card__content {
-  display: flex;
-  flex-direction: column; /* Default: vertical stack */
-  gap: 1rem;
+	display: flex;
+	flex-direction: column; /* Default: vertical stack */
+	gap: 1rem;
 }
 
 /* When the container named 'card' is at least 30rem wide... */
 @container card (min-width: 30rem) {
-  .cq-card__content {
-    flex-direction: row; /* Switch to horizontal layout */
-    align-items: center;
-  }
+	.cq-card__content {
+		flex-direction: row; /* Switch to horizontal layout */
+		align-items: center;
+	}
 }
 ```
 
@@ -207,12 +210,12 @@ Now, place this card inside different grid layouts.
 ```html
 <!-- In a narrow column, the card will be vertical -->
 <div class="grid" data-cols="4">
-  <div class="cq-card">...</div>
+	<div class="cq-card">...</div>
 </div>
 
 <!-- In a wide column, the card will switch to its horizontal layout -->
 <div class="grid" data-cols="2">
-  <div class="cq-card">...</div>
+	<div class="cq-card">...</div>
 </div>
 ```
 
@@ -226,14 +229,31 @@ Use `.flex-grid` for simpler, wrapping layouts where two-dimensional alignment i
 
 ```html
 <div class="flex-grid gap-4" data-cols="3">
-  <div class="card">Item A</div>
-  <div class="card">Item B</div>
-  <div class="card">Item C</div>
-  <div class="card">Item D</div>
+	<div class="card">Item A</div>
+	<div class="card">Item B</div>
+	<div class="card">Item C</div>
+	<div class="card">Item D</div>
 </div>
 ```
 
 _Items will try to form rows of 3, but will wrap and grow to fill any remaining space on the last row._
+
+#### Spanning in Flexbox Grids
+
+Similar to the CSS Grid engine, you can use `data-span="N"` on a direct child of a `.flex-grid` that has a `data-cols` attribute. This adjusts the `flex-basis` of the item to make it occupy the space of `N` columns.
+
+This is useful for creating layouts where most items are uniform, but some need to be wider.
+
+```html
+<div class="flex-grid gap-4" data-cols="4">
+	<div class="card" data-span="2">This item spans 2 columns.</div>
+	<div class="card">Item B</div>
+	<div class="card">Item C</div>
+	<div class="card">Item D</div>
+	<div class="card" data-span="3">This one spans 3.</div>
+	<div class="card">Item F</div>
+</div>
+```
 
 ### Sidebar Layout
 
@@ -241,9 +261,9 @@ A common page layout pattern. It's a simple, explicit two-column grid that colla
 
 ```html
 <div class="sidebar-grid__container">
-  <div class="sidebar-grid gap-6">
-    <main>Main Content</main>
-    <aside>Sidebar</aside>
-  </div>
+	<div class="sidebar-grid gap-6">
+		<main>Main Content</main>
+		<aside>Sidebar</aside>
+	</div>
 </div>
 ```

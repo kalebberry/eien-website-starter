@@ -44,7 +44,10 @@ $__size-step: math.div($__size-range, $__col-range);
 @mixin base-grid-rules {
   display: grid;
   /* If --grid-cols is set, use it to create explicit columns. Otherwise, use the auto-fit logic. */
-  grid-template-columns: var(--grid-cols, repeat(var(--grid-placement, auto-fit), minmax(var(--grid-min-item-size, 16rem), 1fr)));
+  grid-template-columns: var(
+    --grid-cols,
+    repeat(var(--grid-placement, auto-fit), minmax(var(--grid-min-item-size, 16rem), 1fr))
+  );
   gap: var(--gutter, 1rem);
   grid-auto-rows: minmax(min-content, auto);
 
@@ -112,7 +115,8 @@ $__size-step: math.div($__size-range, $__col-range);
   }
 
   @container (max-width: 30rem) {
-    .grid [data-span] {
+    .grid [data-span],
+    .grid [data-row-span] {
       grid-column: span 1 !important;
     }
   }
@@ -172,6 +176,17 @@ $__size-step: math.div($__size-range, $__col-range);
   &.flex-grid--playground > * {
     min-width: var(--min-width, 16rem);
     flex-basis: var(--flex-basis, 30%);
+  }
+
+  // Generate span overrides for flexbox
+  @for $cols from 2 through $grid-max-cols {
+    &[data-cols="#{$cols}"] {
+      @for $span from 2 to $cols {
+        > [data-span="#{$span}"] {
+          flex-basis: calc((100% / #{$cols} * #{$span}) - (var(--gutter, 1rem) * (#{$cols} - #{$span}) / #{$cols}));
+        }
+      }
+    }
   }
 }
 

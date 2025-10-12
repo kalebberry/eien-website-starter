@@ -21,22 +21,24 @@
   - `.grid--fit` → `auto-fit` (collapses empty tracks)
   - `.grid--fill` → `auto-fill` (keeps phantom tracks)
 - **Packing**
-  - `.grid--dense` → fills gaps with later items
-- **Spans**
-  - `.grid__span-N` → span N columns
-  - `.grid__row-N` → span N rows
+  - `.grid--dense` → fills gaps with later items (Grid only)
 - **Gutters**
   - `.gap-0` (0), `.gap-2` (0.5rem), `.gap-4` (1rem), `.gap-6` (1.5rem)
 
 ---
 
-## ⚙️ Data API
+## ⚙️ Data Attributes
 
 - **`data-cols="N"`**
   - Grid → adjusts `--grid-min-item-size` for N-up layouts
   - Flex → sets child `flex-basis` & `min-width` for wrapping
 
 ---
+
+- **`data-span="N"`**
+  - Grid → item spans N columns (`grid-column: span N`)
+  - Flex → item `flex-basis` is adjusted to span N columns
+- **`data-row-span="N"`** (Grid only) → item spans N rows (`grid-row: span N`)
 
 ## 📦 Usage Patterns
 
@@ -53,8 +55,8 @@
 <div class="flex-grid gap-4" data-cols="3">…</div>
 
 <div class="grid grid--dense gap-4" data-cols="4">
-	<div class="card grid__span-2">Wide</div>
-	<div class="card grid__row-2">Tall</div>
+	<div class="card" data-span="2">Wide</div>
+	<div class="card" data-row-span="2">Tall</div>
 </div>
 ```
 
