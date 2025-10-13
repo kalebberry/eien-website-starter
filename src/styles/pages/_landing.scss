@@ -147,20 +147,6 @@ section {
   color: var(--muted);
   z-index: 1;
 }
-/* Screentone patterns */
-.tone--dots::before {
-  background: radial-gradient(#000 10%, transparent 11%) 0 0/12px 12px;
-}
-.tone--hatch::before {
-  background: repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 10px);
-}
-.tone--lines::before {
-  background: repeating-linear-gradient(0deg, #000 0 2px, transparent 2px 8px);
-}
-.tone--cross::before {
-  background: repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 10px),
-    repeating-linear-gradient(-45deg, #000 0 1px, transparent 1px 10px);
-}
 
 /* Utilities: subtle max width on long lines */
 #articles p {
