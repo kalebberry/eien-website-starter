@@ -134,6 +134,30 @@ This template includes a set of pre-styled components that you can use and exten
 
 ---
 
+## ✨ Client-Side Interactivity (Vue.js)
+
+For interactive components ("islands of interactivity"), this template uses Astro's official **Vue.js integration**, along with **Pinia** for state management.
+
+### Hydrating Vue Components
+
+Instead of using Astro's `client:*` directives, this template uses a manual hydration approach for more control. This is handled by scripts in the `/src/hydrate/` directory.
+
+**Workflow:**
+
+1.  **Create your Vue component** (e.g., `MyComponent.vue`) in `/src/components/vue/`.
+2.  **Add a target element** with a unique ID in your `.astro` file where you want the component to appear.
+    ```html
+    <div id="my-vue-app"></div>
+    ```
+3.  **Mount the component** in a hydration script (e.g., `/src/hydrate/landing.ts`). Use the `initPinia` helper utility to mount your component and provide Pinia state management.
+
+    ```typescript
+    import { initPinia } from '@/utils/initPinia';
+    import MyComponent from '@/components/vue/MyComponent.vue';
+
+    initPinia(MyComponent, '#my-vue-app');
+    ```
+
 ## 📜 Available Scripts
 
 All scripts are defined in `package.json`.
