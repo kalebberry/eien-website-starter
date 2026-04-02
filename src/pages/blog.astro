@@ -1,0 +1,170 @@
+---
+import Layout from '@/Layouts/DefaultLayout.astro';
+---
+
+<Layout title='Blog - Animancy' description='test'>
+	<main class='container'>
+		<h1 class='fs-step-5 margin-block-end-32'>Our Blog</h1>
+
+		<section class='margin-block-end-64'>
+			<h2 class='fs-step-4 margin-block-end-16'>Featured Post</h2>
+			<div class='grid gap-4' data-cols='2'>
+				<article class='card' data-span='2'>
+					<img
+						src='https://picsum.photos/id/0/800/400'
+						alt='Featured blog post image'
+						style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+					/>
+					<h3 class='fs-step-2'>The Art of Responsive Grids</h3>
+					<p class='fs-step-0'>
+						Dive deep into the principles of modern web layouts. Learn how to create flexible and
+						adaptive designs that look great on any device.
+					</p>
+					<a href='#' class='btn btn--sm margin-block-start-16'>Read More</a>
+				</article>
+			</div>
+		</section>
+
+		<section class='margin-block-end-64'>
+			<h2 class='fs-step-4 margin-block-end-16'>Latest Articles</h2>
+			<div class='sidebar-grid__container'>
+				<div class='sidebar-grid gap-6'>
+					<div class='grid gap-4' data-cols='3'>
+						<article class='card'>
+							<img
+								src='https://picsum.photos/id/1/400/250'
+								alt='Blog post image'
+								style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+							/>
+							<h3 class='fs-step-1'>Understanding CSS Variables</h3>
+							<p class='fs-step-00'>Unlock the power of custom properties for dynamic styling.</p>
+							<a href='#' class='btn btn--sm margin-block-start-16'>Read</a>
+						</article>
+						<article class='card'>
+							<img
+								src='https://picsum.photos/id/2/400/250'
+								alt='Blog post image'
+								style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+							/>
+							<h3 class='fs-step-1'>Astro for Static Sites</h3>
+							<p class='fs-step-00'>
+								Build blazing-fast websites with Astro's island architecture.
+							</p>
+							<a href='#' class='btn btn--sm margin-block-start-16'>Read</a>
+						</article>
+						<article class='card'>
+							<img
+								src='https://picsum.photos/id/3/400/250'
+								alt='Blog post image'
+								style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+							/>
+							<h3 class='fs-step-1'>Sass Mixins Deep Dive</h3>
+							<p class='fs-step-00'>Streamline your CSS with powerful and reusable mixins.</p>
+							<a href='#' class='btn btn--sm margin-block-start-16'>Read</a>
+						</article>
+						<article class='card'>
+							<img
+								src='https://picsum.photos/id/4/400/250'
+								alt='Blog post image'
+								style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+							/>
+							<h3 class='fs-step-1'>Container Queries Explained</h3>
+							<p class='fs-step-00'>
+								Make your components truly responsive to their parent's size.
+							</p>
+							<a href='#' class='btn btn--sm margin-block-start-16'>Read</a>
+						</article>
+						<article class='card'>
+							<img
+								src='https://picsum.photos/id/5/400/250'
+								alt='Blog post image'
+								style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+							/>
+							<h3 class='fs-step-1'>The Power of Design Tokens</h3>
+							<p class='fs-step-00'>Centralize your design decisions for consistency.</p>
+							<a href='#' class='btn btn--sm margin-block-start-16'>Read</a>
+						</article>
+						<article class='card'>
+							<img
+								src='https://picsum.photos/id/6/400/250'
+								alt='Blog post image'
+								style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+							/>
+							<h3 class='fs-step-1'>Building Accessible Interfaces</h3>
+							<p class='fs-step-00'>Best practices for inclusive web development.</p>
+							<a href='#' class='btn btn--sm margin-block-start-16'>Read</a>
+						</article>
+					</div>
+					<aside class='card padding-32'>
+						<h3 class='fs-step-2 margin-block-end-16'>Categories</h3>
+						<ul role='list' class='flow' style='--space: 0.5rem;'>
+							<li><a href='#' class='tag'>Web Development</a></li>
+							<li><a href='#' class='tag'>CSS & SCSS</a></li>
+							<li><a href='#' class='tag'>Astro</a></li>
+							<li><a href='#' class='tag'>Design Systems</a></li>
+							<li><a href='#' class='tag'>Accessibility</a></li>
+						</ul>
+						<h3 class='fs-step-2 margin-block-start-32 margin-block-end-16'>Recent Posts</h3>
+						<ul role='list' class='flow' style='--space: 0.5rem;'>
+							<li><a href='#'>Understanding CSS Variables</a></li>
+							<li><a href='#'>Astro for Static Sites</a></li>
+							<li><a href='#'>Sass Mixins Deep Dive</a></li>
+						</ul>
+					</aside>
+				</div>
+			</div>
+		</section>
+
+		<section class='margin-block-end-64'>
+			<h2 class='fs-step-4 margin-block-end-16'>Related Topics</h2>
+			<div class='flex-grid gap-4' data-cols='4'>
+				<div class='card'>
+					<h3 class='fs-step-1'>Flexbox Layouts</h3>
+					<p class='fs-step-00'>Explore one-dimensional layouts.</p>
+				</div>
+				<div class='card'>
+					<h3 class='fs-step-1'>CSS Grid Mastery</h3>
+					<p class='fs-step-00'>Advanced techniques for 2D grids.</p>
+				</div>
+				<div class='card'>
+					<h3 class='fs-step-1'>Responsive Images</h3>
+					<p class='fs-step-00'>Optimize images for all screen sizes.</p>
+				</div>
+				<div class='card'>
+					<h3 class='fs-step-1'>Performance Tips</h3>
+					<p class='fs-step-00'>Speed up your Astro site.</p>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer
+		class='container margin-block-start-64 padding-block-32'
+		style='border-top: 1px solid var(--border-weak);'
+	>
+		<div class='grid gap-4' data-cols='3'>
+			<div class='flow' style='--space: 0.5rem;'>
+				<h4 class='fs-step-0'>About Us</h4>
+				<p class='fs-step-00'>We are passionate about web development and design systems.</p>
+			</div>
+			<div class='flow' style='--space: 0.5rem;'>
+				<h4 class='fs-step-0'>Quick Links</h4>
+				<ul role='list' class='flow' style='--space: 0.25rem;'>
+					<li><a href='#'>Home</a></li>
+					<li><a href='#'>Blog</a></li>
+					<li><a href='#'>Contact</a></li>
+				</ul>
+			</div>
+			<div class='flow' style='--space: 0.5rem;'>
+				<h4 class='fs-step-0'>Follow Us</h4>
+				<ul role='list' class='flow' style='--space: 0.25rem;'>
+					<li><a href='#'>Twitter</a></li>
+					<li><a href='#'>GitHub</a></li>
+				</ul>
+			</div>
+		</div>
+		<p class='fs-step-00 margin-block-start-32' style='text-align: center; color: var(--muted);'>
+			&copy; 2026 Animancy. All rights reserved.
+		</p>
+	</footer>
+</Layout>

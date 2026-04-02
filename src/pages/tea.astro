@@ -1,0 +1,231 @@
+---
+import Layout from '@/Layouts/DefaultLayout.astro';
+---
+
+<Layout title='Our Teas - Animancy' description='test'>
+	<main class='container'>
+		<section class='margin-block-end-64'>
+			<div
+				class='hero--bw'
+				style="background-image: url('https://picsum.photos/id/431/1600/900'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center; justify-content: center;"
+			>
+				<div class='container' data-type='narrow' style='text-align: center; color: var(--text);'>
+					<h1
+						class='fs-step-6 margin-block-end-16'
+						style='text-shadow: 2px 2px 4px rgba(0,0,0,0.7);'
+					>
+						Discover Our Exquisite Tea Collection
+					</h1>
+					<p class='fs-step-1' style='text-shadow: 1px 1px 3px rgba(0,0,0,0.7);'>
+						Hand-picked from the finest gardens, crafted for your perfect moment.
+					</p>
+					<a href='#all-teas' class='btn btn--primary margin-block-start-32'>Explore All Teas</a>
+				</div>
+			</div>
+		</section>
+
+		<section class='margin-block-end-64'>
+			<h2 class='fs-step-4 margin-block-end-16'>Featured Blends</h2>
+			<div class='grid gap-4' data-cols='3'>
+				<article class='card' data-span='2'>
+					<img
+						src='https://picsum.photos/id/225/800/450'
+						alt='Featured Green Tea'
+						style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+					/>
+					<h3 class='fs-step-2'>Zen Green Tea</h3>
+					<p class='fs-step-0'>
+						A refreshing and calming blend, perfect for a peaceful start to your day.
+					</p>
+					<a href='#' class='btn btn--sm margin-block-start-16'>View Product</a>
+				</article>
+				<article class='card'>
+					<img
+						src='https://picsum.photos/id/326/400/250'
+						alt='Featured Herbal Infusion'
+						style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+					/>
+					<h3 class='fs-step-1'>Sunset Berry Infusion</h3>
+					<p class='fs-step-00'>A delightful caffeine-free blend with notes of wild berries.</p>
+					<a href='#' class='btn btn--sm margin-block-start-16'>View Product</a>
+				</article>
+			</div>
+		</section>
+
+		<section class='margin-block-end-6 flow' style='--space: 2rem;'>
+			<h2 class='fs-step-4'>Tea Categories</h2>
+			<div class='flex-grid gap-4' data-cols='4'>
+				<a href='#' class='card btn--ghost' style=' text-decoration: none;'>
+					<h3 class='fs-step-1'>Green Teas</h3>
+					<p class='fs-step-00'>Fresh & Vibrant</p>
+				</a>
+				<a href='#' class='card btn--ghost' style=' text-decoration: none;'>
+					<h3 class='fs-step-1'>Black Teas</h3>
+					<p class='fs-step-00'>Bold & Robust</p>
+				</a>
+				<a href='#' class='card btn--ghost' style=' text-decoration: none;'>
+					<h3 class='fs-step-1'>Herbal Infusions</h3>
+					<p class='fs-step-00'>Soothing & Caffeine-Free</p>
+				</a>
+				<a href='#' class='card btn--ghost' style=' text-decoration: none;'>
+					<h3 class='fs-step-1'>Oolong Teas</h3>
+					<p class='fs-step-00'>Complex & Aromatic</p>
+				</a>
+			</div>
+		</section>
+
+		<section id='all-teas' class='margin-block-end-64'>
+			<h2 class='fs-step-4 margin-block-end-16'>All Our Teas</h2>
+			<div class='masonry__container'>
+				<div class='masonry-grid gap-4'>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/102/400/300'
+							alt='Green Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>Morning Dew Green</h3>
+						<p class='fs-step-00'>Light and refreshing, with a hint of sweetness.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/106/400/200'
+							alt='Black Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>Classic English Breakfast</h3>
+						<p class='fs-step-00'>A strong, malty black tea to kickstart your day.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/108/400/500'
+							alt='Herbal Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>Chamomile Dream</h3>
+						<p class='fs-step-00'>Relaxing herbal blend for a peaceful night's sleep.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/111/400/350'
+							alt='Oolong Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>Oriental Beauty Oolong</h3>
+						<p class='fs-step-00'>Complex floral and honey notes.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/114/400/220'
+							alt='White Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>Silver Needle White Tea</h3>
+						<p class='fs-step-00'>Delicate and rare, with subtle sweetness.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/117/400/550'
+							alt='Pu-erh Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>Aged Pu-erh</h3>
+						<p class='fs-step-00'>Earthly and rich, a connoisseur's delight.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/122/400/400'
+							alt='Rooibos Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>African Rooibos</h3>
+						<p class='fs-step-00'>Naturally sweet and caffeine-free.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+					<article class='card'>
+						<img
+							src='https://picsum.photos/id/129/400/250'
+							alt='Chai Tea'
+							style='width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 1rem;'
+						/>
+						<h3 class='fs-step-1'>Spiced Masala Chai</h3>
+						<p class='fs-step-00'>Warm and aromatic, perfect with milk.</p>
+						<a href='#' class='btn btn--sm margin-block-start-16'>Details</a>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class='margin-block-end-64'>
+			<h2 class='fs-step-4 margin-block-end-16'>Special Offer!</h2>
+			<div class='sidebar-grid__container'>
+				<div class='sidebar-grid gap-6'>
+					<div class='card cq-card padding-32'>
+						<div class='cq-card__content'>
+							<div>
+								<h3 class='fs-step-2'>Limited Edition Spring Harvest</h3>
+								<p class='fs-step-0'>
+									Experience the delicate flavors of our exclusive Spring Harvest tea. Available for
+									a limited time only!
+								</p>
+							</div>
+							<div style='width: 100%;'>
+								<a href='#' class='btn btn--primary'>Shop Now</a>
+							</div>
+						</div>
+					</div>
+					<aside class='card padding-32 flow'>
+						<h3 class='fs-step-2'>Why Choose Us?</h3>
+						<ul role='list' class='flow'>
+							<li>Ethically Sourced</li>
+							<li>Premium Quality</li>
+							<li>Sustainable Practices</li>
+							<li>Expertly Blended</li>
+						</ul>
+					</aside>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer
+		class='container margin-block-start-64 padding-block-32'
+		style='border-top: 1px solid var(--border-weak);'
+	>
+		<div class='grid gap-4' data-cols='3'>
+			<div class='flow' style='--space: 0.5rem;'>
+				<h4 class='fs-step-0'>About Animancy Teas</h4>
+				<p class='fs-step-00'>
+					We are dedicated to bringing you the finest teas from around the world, with a focus on
+					quality and sustainability.
+				</p>
+			</div>
+			<div class='flow' style='--space: 0.5rem;'>
+				<h4 class='fs-step-0'>Quick Links</h4>
+				<ul role='list' class='flow' style='--space: 0.25rem;'>
+					<li><a href='#'>Home</a></li>
+					<li><a href='#'>Shop</a></li>
+					<li><a href='#'>About Us</a></li>
+					<li><a href='#'>Contact</a></li>
+				</ul>
+			</div>
+			<div class='flow' style='--space: 0.5rem;'>
+				<h4 class='fs-step-0'>Connect With Us</h4>
+				<ul role='list' class='flow' style='--space: 0.25rem;'>
+					<li><a href='#'>Instagram</a></li>
+					<li><a href='#'>Facebook</a></li>
+					<li><a href='#'>Email</a></li>
+				</ul>
+			</div>
+		</div>
+		<p class='fs-step-00 margin-block-start-32' style='text-align: center; color: var(--muted);'>
+			&copy; 2026 Animancy Teas. All rights reserved.
+		</p>
+	</footer>
+</Layout>
