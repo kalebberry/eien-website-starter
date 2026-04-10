@@ -4,8 +4,6 @@ Welcome to the detailed documentation for the Auto-Grid system. This guide provi
 
 The system is built on two core layout engines—CSS Grid and Flexbox—and enhanced with custom properties, data attributes, and container queries to create layouts that adapt to their available space without relying on traditional media query breakpoints.
 
----
-
 ## 1. Core Concepts
 
 ### Layout Engines
@@ -266,4 +264,44 @@ A common page layout pattern. It's a simple, explicit two-column grid that colla
 		<aside>Sidebar</aside>
 	</div>
 </div>
+```
+
+### Masonry Grid (`.masonry-grid`)
+
+A CSS-only masonry layout using `column-count`. Unlike standard grid, items fill vertically first. Wrap it in a `.masonry__container` for responsive column shifts.
+
+- **Breakpoint 40rem:** Switches to 2 columns.
+- **Breakpoint 70rem:** Switches to 3 columns.
+
+### Layout Utilities
+
+#### The Reel (`.reel`)
+
+A horizontal scrolling container with scroll-snapping. Perfect for carousels.
+
+- **Custom Property:** `--reel-item-width` (Defaults to `18rem`).
+
+```html
+<div class="reel gap-4" style="--reel-item-width: 20rem;">
+	<div class="card">Item 1</div>
+	<div class="card">Item 2</div>
+</div>
+```
+
+#### The Frame (`.frame`)
+
+Forces an aspect ratio on its children (usually images) using the `aspect-ratio` property.
+
+- **Custom Property:** `--n` (Numerator), `--d` (Denominator).
+
+```html
+<div class="frame card" style="--n: 16; --d: 9;">
+	<img src="..." alt="Landscape Image" />
+</div>
+```
+
+> **Note:** The frame uses `object-fit: cover` to ensure images fill the space without distortion.
+
+```
+
 ```

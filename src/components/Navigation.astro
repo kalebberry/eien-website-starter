@@ -1,0 +1,36 @@
+---
+/**
+ * Navigation Component
+ * Uses .repel for logo/nav split and .cluster for link wrapping
+ */
+---
+
+<header
+	class='padding-block-16'
+	style='border-bottom: 1px solid var(--border-weak); background: var(--background);'
+>
+	<div class='container repel'>
+		<!-- Brand / Logo -->
+		<a
+			href='/'
+			class='fs-step-2'
+			style='font-weight: 700; text-decoration: none; color: var(--text);'
+		>
+			Animancy
+		</a>
+
+		<!-- Navigation Links -->
+		<nav>
+			<ul role='list' class='cluster' style='--gutter: var(--space-16, 1rem);'>
+				<li><a href='/tea' class='fs-step-0' style='text-decoration: none;'>Teas</a></li>
+				<li><a href='/blog' class='fs-step-0' style='text-decoration: none;'>Blog</a></li>
+				<li>
+					<a href='/demo/design-system' class='fs-step-0' style='text-decoration: none;'>System</a>
+				</li>
+				<li>
+					<a href='#' class='btn btn--sm btn--primary'>Shop Now</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>
