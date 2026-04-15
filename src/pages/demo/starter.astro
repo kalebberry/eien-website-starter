@@ -4,10 +4,172 @@ import DefaultLayout from "@/Layouts/DefaultLayout.astro";
 
 <DefaultLayout title="test" description="test">
   <main>
-    <section>
-      <header>
-        <h2>Hello</h2>
-      </header>
+    <section class="container">
+      <section class="johto-about flow">
+        <header>
+          <h1>Welcome to the Johto Region</h1>
+        </header>
+
+        <article class="region-intro flow">
+          <p>
+            The Johto region, a land where tradition and history blend harmoniously with the wonders of Pokémon,
+            welcomes trainers from around the world. Located west of Kanto, Johto offers a journey through ancient
+            traditions, sacred towers, and untamed wilderness.
+          </p>
+        </article>
+
+        <article class="region-features flow">
+          <section class="tradition flow">
+            <h2>A Land of Tradition</h2>
+            <p>
+              Johto prides itself on preserving the ways of old. From the sacred Bell Tower in Ecruteak City where the
+              legendary Ho-Oh is said to perch, to the Ruins of Alph with their mysterious Unown inscriptions, history
+              echoes throughout the region. Our cities maintain traditional architecture, with Ecruteak City's dance
+              theaters and Violet City's Sprout Tower standing as testaments to our cultural heritage.
+            </p>
+          </section>
+
+          <section class="cities flow">
+            <h2>Cities & Landmarks</h2>
+            <p>Explore our diverse cities, each with unique charm and character:</p>
+            <ul role="list" class="flow">
+              <li><strong>New Bark Town</strong> - Where new beginnings blow like the wind</li>
+              <li><strong>Violet City</strong> - Home to the swaying Sprout Tower and the region's first Gym</li>
+              <li><strong>Azalea Town</strong> - Known for its Slowpoke Well and masterful Poké Ball craftsman</li>
+              <li>
+                <strong>Goldenrod City</strong> - The bustling metropolis featuring the Radio Tower and Department Store
+              </li>
+              <li>
+                <strong>Ecruteak City</strong> - Where legend and history intertwine at the Burned and Bell Towers
+              </li>
+              <li><strong>Olivine City</strong> - A port city with a magnificent lighthouse guarded by Jasmine</li>
+              <li><strong>Cianwood City</strong> - An isolated coastal town famous for its pharmacy</li>
+              <li><strong>Mahogany Town</strong> - A small, quiet town with a dark secret</li>
+              <li><strong>Blackthorn City</strong> - Nestled among mountains, home to dragon tamers</li>
+            </ul>
+          </section>
+
+          <section class="pokemon-league flow">
+            <h2>The Pokémon League Challenge</h2>
+            <p>
+              Test your skills against our eight distinguished Gym Leaders before challenging the Elite Four and
+              Champion at the Indigo Plateau. Each Gym Leader specializes in a different type of Pokémon, presenting
+              unique strategic challenges for trainers.
+            </p>
+          </section>
+
+          <section class="pokemon-league-cards grid gap-6">
+            <!-- From Uiverse.io by Yaya12085 -->
+            <div class="card">
+              <div class="image"></div>
+              <div class="content">
+                <a href="#">
+                  <span class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                </a>
+
+                <p class="desc">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus pariatur animi
+                  temporibus nesciunt praesentium
+                </p>
+
+                <a class="action" href="#">
+                  Find out more
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+            <!-- From Uiverse.io by Yaya12085 -->
+            <div class="card">
+              <div class="image"></div>
+              <div class="content">
+                <a href="#">
+                  <span class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                </a>
+
+                <p class="desc">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus pariatur animi
+                  temporibus nesciunt praesentium
+                </p>
+
+                <a class="action" href="#">
+                  Find out more
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+            <!-- From Uiverse.io by Yaya12085 -->
+            <div class="card">
+              <div class="image"></div>
+              <div class="content">
+                <a href="#">
+                  <span class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                </a>
+
+                <p class="desc">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus pariatur animi
+                  temporibus nesciunt praesentium
+                </p>
+
+                <a class="action" href="#">
+                  Find out more
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+            <!-- From Uiverse.io by Yaya12085 -->
+            <div class="card">
+              <div class="image"></div>
+              <div class="content">
+                <a href="#">
+                  <span class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+                </a>
+
+                <p class="desc">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus pariatur animi
+                  temporibus nesciunt praesentium
+                </p>
+
+                <a class="action" href="#">
+                  Find out more
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <section class="legendary-pokemon flow">
+            <h2>Legendary Encounters</h2>
+            <p>
+              Johto is blessed by the presence of legendary Pokémon that have shaped our region's mythology. The Tower
+              Duo of Ho-Oh and Lugia watch over the skies and seas, while the elusive beasts Entei, Raikou, and Suicune
+              roam our lands. Those deemed worthy may even encounter the time-traveling Celebi in the depths of Ilex
+              Forest.
+            </p>
+          </section>
+        </article>
+
+        <aside class="visitor-info flow">
+          <h2>Plan Your Journey</h2>
+          <p>
+            Whether you're a new trainer setting out from Professor Elm's laboratory or a seasoned Pokémon Master
+            seeking new challenges, Johto welcomes you. Pack your Poké Balls, prepare your team, and embark on an
+            unforgettable adventure through our historic region.
+          </p>
+          <p>The path to becoming a Pokémon Master awaits. Will you answer the call?</p>
+
+          <nav class="journey-navigation flow">
+            <a href="#start-journey" class="cta-button" aria-label="Begin your Johto journey">
+              Begin Your Johto Journey
+            </a>
+          </nav>
+        </aside>
+
+        <footer>
+          <small>
+            © The Pokémon Company. All information about the Johto region is based on the official Pokémon games.
+          </small>
+        </footer>
+      </section>
     </section>
   </main>
 </DefaultLayout>
