@@ -9,16 +9,25 @@
     <link rel="stylesheet" href="/src/styles/grid-demo.css" />
   </head>
   <body>
-    <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark and light theme">
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      type="button"
+      aria-pressed="false"
+      aria-label="Toggle dark and light theme">
       <span id="themeIcon" class="icon" aria-hidden="true">🌙</span>
       <span id="themeText">Dark</span>
     </button>
 
-    <div class="wrap">
+    <div class="wrap flow-large">
+      <nav>
+        <a href="grid-demo.html" class="back-link" aria-label="Back to component navigation">Grid Demo</a>
+      </nav>
       <header>
         <h1>Flexbox Grid Demo</h1>
         <p class="lead">
-          A modern, media-query-free grid built with Flexbox, <code>gap</code>, and a scalable SCSS loop. Great for 1-D wrapping layouts.
+          A modern, media-query-free grid built with Flexbox, <code>gap</code>, and a scalable SCSS loop. Great for 1-D
+          wrapping layouts.
         </p>
       </header>
 
@@ -58,14 +67,20 @@
           <!-- 1. Flexbox Playground -->
           <section class="flow-large">
             <h2 class="section-title">1. Flexbox Playground</h2>
-            <div id="playground" class="flex-grid flex-grid--playground" style="--gutter:1rem; --min-width:16rem; --flex-basis:30%">
+            <div
+              id="playground"
+              class="flex-grid flex-grid--playground"
+              style="--gutter:1rem; --min-width:16rem; --flex-basis:30%">
               <!-- 12 demo cards with varied content length -->
               <article class="card"><h3>Card 1</h3><p>Short and sweet.</p></article>
               <article class="card">
                 <h3>Card 2</h3><p>Medium copy length to show equal height not required.</p>
               </article>
               <article class="card">
-                <h3>Card 3</h3><p>Sometimes a card has a longer paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis.</p>
+                <h3>Card 3</h3><p>
+                  Sometimes a card has a longer paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Aenean quis.
+                </p>
               </article>
               <article class="card"><h3>Card 4</h3><p>Compact.</p></article>
               <article class="card">
@@ -191,7 +206,35 @@
             </section>
           </section>
 
-          <!-- 3. Masonry (CSS Columns) -->
+          <!-- 3. Item Spanning -->
+          <section class="flow-large">
+            <h2 class="section-title">3. Item Spanning</h2>
+            <p class="lead" style="margin-block-start:0">
+              Use <code>data-span</code> to make items take up multiple column spaces.
+            </p>
+
+            <h3>4-column grid with spanning items</h3>
+            <div class="flex-grid" data-cols="4">
+              <article class="card" data-span="2"><h3>Spans 2</h3><p>This item takes up 2 columns</p></article>
+              <article class="card"><h3>1 col</h3><p>Regular width</p></article>
+              <article class="card"><h3>1 col</h3><p>Regular width</p></article>
+              <article class="card" data-span="3"><h3>Spans 3</h3><p>This item spans 3 columns</p></article>
+              <article class="card"><h3>1 col</h3><p>Regular width</p></article>
+              <article class="card" data-span="4"><h3>Spans 4</h3><p>This item spans all 4 columns</p></article>
+            </div>
+
+            <h3>6-column grid with spanning items</h3>
+            <div class="flex-grid" data-cols="6">
+              <article class="card" data-span="2"><h3>Spans 2</h3><p>Double width</p></article>
+              <article class="card"><h3>1 col</h3><p>Regular</p></article>
+              <article class="card" data-span="3"><h3>Spans 3</h3><p>Triple width</p></article>
+              <article class="card"><h3>1 col</h3><p>Regular</p></article>
+              <article class="card" data-span="4"><h3>Spans 4</h3><p>4-column width</p></article>
+              <article class="card" data-span="2"><h3>Spans 2</h3><p>Double width</p></article>
+            </div>
+          </section>
+
+          <!-- 4. Masonry (CSS Columns) -->
           <section class="flow-large">
             <h2 class="section-title">3. Masonry Layout (CSS Columns)</h2>
             <p class="lead" style="margin-block-start:0">
@@ -221,7 +264,9 @@
           </section>
 
           <section class="flow-large">
-            <footer style="margin-block: var(--space-xl); color: var(--muted);">Built with Flexbox, custom properties, and a scalable SCSS loop.</footer>
+            <footer style="margin-block: var(--space-xl); color: var(--muted);">
+              Built with Flexbox, custom properties, and a scalable SCSS loop.
+            </footer>
           </section>
         </main>
       </div>
@@ -235,7 +280,8 @@
         const icon = document.getElementById("themeIcon");
         const text = document.getElementById("themeText");
 
-        const getOSPref = () => (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        const getOSPref = () =>
+          window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
         const saved = localStorage.getItem("theme");
         const initial = saved || getOSPref();
         root.setAttribute("data-theme", initial);

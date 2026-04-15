@@ -9,7 +9,12 @@
   </head>
 </html>
 <body>
-  <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle dark and light theme">
+  <button
+    id="themeToggle"
+    class="theme-toggle"
+    type="button"
+    aria-pressed="false"
+    aria-label="Toggle dark and light theme">
     <span id="themeIcon" class="icon" aria-hidden="true">🌙</span>
     <span id="themeText">Dark</span>
   </button>
@@ -20,7 +25,8 @@
     <header>
       <h1>Auto-Grid Demo</h1>
       <p class="lead">
-        A modern, media-query-free grid built with CSS Grid + custom properties. Inspired by Every Layout and intrinsic design. Use the controls to see how
+        A modern, media-query-free grid built with CSS Grid + custom properties. Inspired by Every Layout and intrinsic
+        design. Use the controls to see how
         <code>auto-fit</code>
         /
         <code>auto-fill</code>
@@ -96,7 +102,10 @@
             </article>
             <article class="card">
               <h3>Card 3</h3>
-              <p>Sometimes a card has a longer paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis.</p>
+              <p>
+                Sometimes a card has a longer paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                quis.
+              </p>
             </article>
             <article class="card">
               <h3>Card 4</h3>
@@ -403,12 +412,14 @@
 
         <!-- 5) Dense Packing + Spans -->
         <section class="flow-large">
-          <h2 class="section-title">3. Dense Packing + Spans</h2>
-          <p class="lead" style="margin-block-start: 0">
-            Turn on
-            <code>.grid--dense</code>
-            and use item spans to fill gaps for a masonry-ish feel.
-          </p>
+          <header class="flow">
+            <h2 class="section-title">3. Dense Packing + Spans</h2>
+            <p class="lead" style="margin-block-start: 0">
+              Turn on
+              <code>.grid--dense</code>
+              and use item spans to fill gaps for a masonry-ish feel.
+            </p>
+          </header>
 
           <div class="grid grid--dense gap-4" data-cols="4">
             <article class="card" data-span="2">
@@ -445,32 +456,41 @@
             </article>
           </div>
 
-          <h2 class="section-title">4. Sidebar Layout (Explicit Grid)</h2>
-          <p class="lead" style="margin-block-start: 0">For page shells, use an explicit two-column grid—content + sidebar—that still collapses gracefully.</p>
+          <section class="flow-large">
+            <header class="flow">
+              <h2 class="section-title">4. Sidebar Layout (Explicit Grid)</h2>
+              <p class="lead" style="margin-block-start: 0">
+                For page shells, use an explicit two-column grid—content + sidebar—that still collapses gracefully.
+              </p>
+            </header>
 
-          <section class="sidebar-grid__container">
-            <div class="sidebar-grid gap-6">
-              <article class="card">
-                <h3>Main Content</h3>
-                <p>
-                  Uses
-                  <code>grid-template-columns: minmax(16rem, 3fr) minmax(12rem, 1fr)</code>
-                  so the main area grows faster than the sidebar.
-                </p>
-              </article>
-              <aside class="card">
-                <h3>Sidebar</h3>
-                <p>Holds TOC, filters, or ads.</p>
-              </aside>
-            </div>
+            <section class="sidebar-grid__container">
+              <div class="sidebar-grid gap-6">
+                <article class="card">
+                  <h3>Main Content</h3>
+                  <p>
+                    Uses
+                    <code>grid-template-columns: minmax(16rem, 3fr) minmax(12rem, 1fr)</code>
+                    so the main area grows faster than the sidebar.
+                  </p>
+                </article>
+                <aside class="card">
+                  <h3>Sidebar</h3>
+                  <p>Holds TOC, filters, or ads.</p>
+                </aside>
+              </div>
+            </section>
           </section>
 
           <!-- 6) Subgrid -->
           <section class="flow-large">
-            <h2 class="section-title">5. Subgrid</h2>
-            <p class="lead" style="margin-block-start: 0">
-              Use <code>subgrid</code> to align nested grid items with the parent grid's tracks, perfect for keeping complex card layouts consistent.
-            </p>
+            <header class="flow">
+              <h2 class="section-title">5. Subgrid</h2>
+              <p class="lead" style="margin-block-start: 0">
+                Use <code>subgrid</code> to align nested grid items with the parent grid's tracks, perfect for keeping complex
+                card layouts consistent.
+              </p>
+            </header>
             <div class="grid gap-4" data-cols="3">
               <article class="card">
                 <h3>Standard Card</h3>
@@ -492,8 +512,13 @@
 
           <!-- 7) Container Queries -->
           <section class="flow-large">
-            <h2 class="section-title">6. Container Queries</h2>
-            <p class="lead" style="margin-block-start: 0">Style elements based on their container's size, not just the viewport. The card below changes its internal layout from vertical to horizontal when its container has enough inline space.</p>
+            <header class="flow">
+              <h2 class="section-title">6. Container Queries</h2>
+              <p class="lead" style="margin-block-start: 0">
+                Style elements based on their container's size, not just the viewport. The card below changes its
+                internal layout from vertical to horizontal when its container has enough inline space.
+              </p>
+            </header>
             <div class="container grid gap-4" data-type="narrow" data-cols="1" style="margin-bottom: 1rem">
               <div class="cq-card card">
                 <div class="cq-card__content">
@@ -512,7 +537,77 @@
             </div>
           </section>
 
-          <footer style="margin-block: var(--space-xl); color: var(--muted)">Built with pure CSS Grid, custom properties, and a sprinkle of progressive enhancement. No media queries required.</footer>
+          <footer style="margin-block: var(--space-xl); color: var(--muted)">
+            Built with pure CSS Grid, custom properties, and a sprinkle of progressive enhancement. No media queries
+            required.
+          </footer>
+        </section>
+
+        <!-- 7. Media Components -->
+        <section class="flow-large">
+          <div class="flow-large">
+            <h2 class="section-title">7. Media Components</h2>
+            <header class="flow">
+              <!-- The Reel (Horizontal Scroll) -->
+              <h3>The Reel (Horizontal Scroll)</h3>
+              <p class="lead" style="margin-block-start:0">A horizontally scrolling container with snap points.</p>
+            </header>
+            <div class="reel">
+              <article class="card" style="width:18rem"><h3>Scroll →</h3><p>Swipe or scroll horizontally</p></article>
+              <article class="card" style="width:18rem"><h3>Item 2</h3><p>With snap points</p></article>
+              <article class="card" style="width:18rem"><h3>Item 3</h3><p>For mobile-friendly UIs</p></article>
+              <article class="card" style="width:18rem"><h3>Item 4</h3><p>Perfect for image galleries</p></article>
+              <article class="card" style="width:18rem"><h3>Item 5</h3><p>Or product carousels</p></article>
+              <article class="card" style="width:18rem"><h3>Item 6</h3><p>More content...</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="flow-large">
+          <!-- The Frame (Aspect Ratio) -->
+          <header class="flow">
+            <h3>The Frame (Aspect Ratio)</h3>
+            <p class="lead" style="margin-block-start:0">
+              Perfect for consistent image containers with different aspect ratios.
+            </p>
+          </header>
+          <div class="grid gap-4" data-cols="3">
+            <div class="card">
+              <div class="frame" style="--n:1; --d:1;">
+                <img src="https://picsum.photos/id/1015/600/600" alt="Square image example" />
+              </div>
+              <p>1:1 aspect ratio</p>
+            </div>
+            <div class="card">
+              <div class="frame" style="--n:16; --d:9;">
+                <img src="https://picsum.photos/id/1018/1600/900" alt="Widescreen image example" />
+              </div>
+              <p>16:9 aspect ratio</p>
+            </div>
+            <div class="card">
+              <div class="frame" style="--n:4; --d:3;">
+                <img src="https://picsum.photos/id/1019/800/600" alt="4:3 image example" />
+              </div>
+              <p>4:3 aspect ratio</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="flow-large">
+          <!-- Explicit Grid Columns -->
+          <header class="flow">
+            <h3>Explicit Grid Columns</h3>
+            <p class="lead" style="margin-block-start:0">
+              Using the <code>--grid-cols</code> CSS variable for custom patterns.
+            </p>
+          </header>
+          <div class="grid gap-4" style="--grid-cols: repeat(5, 1fr)">
+            <article class="card" style="grid-column: span 3"><h3>Header</h3><p>Spans 3 columns</p></article>
+            <article class="card" style="grid-column: span 2"><h3>Sidebar</h3><p>Spans 2 columns</p></article>
+            <article class="card" style="grid-column: span 2"><h3>Section 1</h3><p>2 columns</p></article>
+            <article class="card" style="grid-column: span 3"><h3>Section 2</h3><p>3 columns</p></article>
+            <article class="card" style="grid-column: span 5"><h3>Footer</h3><p>Full width (5 columns)</p></article>
+          </div>
         </section>
       </main>
     </div>
@@ -525,7 +620,8 @@
       const icon = document.getElementById("themeIcon");
       const text = document.getElementById("themeText");
 
-      const getOSPref = () => (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      const getOSPref = () =>
+        window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
       const saved = localStorage.getItem("theme");
       const initial = saved || getOSPref();
       root.setAttribute("data-theme", initial);
