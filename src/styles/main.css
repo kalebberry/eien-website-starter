@@ -883,11 +883,21 @@ section {
 }
 
 .poster__art {
+<<<<<<< Updated upstream
   aspect-ratio: 3/4;
   border: 1px solid var(--border);
   background: linear-gradient(180deg, #000 0 35%, transparent 35% 100%), repeating-linear-gradient(135deg, #fff 0 3px, #000 3px 4px);
   filter: grayscale(100%);
   transition: transform 0.2s ease;
+=======
+	aspect-ratio: 3/4;
+	border: 1px solid var(--border);
+	background:
+		linear-gradient(180deg, #000 0 35%, transparent 35% 100%),
+		repeating-linear-gradient(135deg, #fff 0 3px, #000 3px 4px);
+	filter: grayscale(100%);
+	transition: transform 0.2s ease;
+>>>>>>> Stashed changes
 }
 
 .poster__art:hover {
@@ -1684,7 +1694,13 @@ section {
 }
 
 .tone--cross::before {
+<<<<<<< Updated upstream
   background: repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 10px), repeating-linear-gradient(-45deg, #000 0 1px, transparent 1px 10px);
+=======
+	background:
+		repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 10px),
+		repeating-linear-gradient(-45deg, #000 0 1px, transparent 1px 10px);
+>>>>>>> Stashed changes
 }
 
 /*# sourceMappingURL=main.css.map */
