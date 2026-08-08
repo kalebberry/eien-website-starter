@@ -30,6 +30,14 @@ export const useTransactionsStore = defineStore('transactions', {
 				this.transactions = JSON.parse(raw);
 			}
 		},
+		removeTransaction(id: string) {
+			this.transactions = this.transactions.filter((t) => t.id !== id);
+			localStorage.setItem('transactions', JSON.stringify(this.transactions));
+		},
+		clearTransactions() {
+			this.transactions = [];
+			localStorage.removeItem('transactions');
+		},
 	},
 	getters: {
 		// We need to tell the getter what the state looks like

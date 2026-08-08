@@ -1,3 +1,13 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+section[id],
+:target {
+  scroll-margin-top: 5.5rem;
+}
+
 body {
   font-family: var(--body-font-family, sans-serif);
   font-weight: var(--body-font-weight, 300);

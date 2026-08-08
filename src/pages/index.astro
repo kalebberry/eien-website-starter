@@ -1,5 +1,6 @@
 ---
 import Layout from "@/Layouts/DefaultLayout.astro";
+import ExampleComponent from "@/components/vue/ExampleComponent.vue";
 import tokens from "../design-tokens/tokens.json";
 
 const title = "Studio Eien — Web Design";
@@ -439,16 +440,17 @@ const baseColors = tokens.color.base;
 			</div>
 		</section>
 
-		<!-- Optional Vue mount for interactivity demos -->
-		<section class="container flow">
-			<div id="interactive-counter" class="card--bw" style="padding:1rem">
-				<p class="fs-step-00" style="opacity:.75; margin:0">
-					Vue mount ready: <code>#interactive-counter</code>
+		<!-- VUE & PINIA DEMO SECTION -->
+		<section id="vue-demo" class="container flow">
+			<header class="flow" style="--space: 0.5rem;">
+				<h2 class="fs-step-6">Vue.js + Pinia Interactivity</h2>
+				<p class="fs-step-1" style="max-inline-size: 60ch;">
+					Interactive components are included as Astro islands using
+					standard Vue 3 Composition API and Pinia state management.
 				</p>
-			</div>
+			</header>
+			<ExampleComponent client:load />
 		</section>
-		<!-- Your existing Vue bundle can be hooked here if needed -->
-		<script type="module" src="/src/hydrate/landing.ts"></script>
 	</main>
 </Layout>
 <script>
@@ -490,11 +492,11 @@ const baseColors = tokens.color.base;
 			const elementsToAnimate = gsap.utils.toArray(animatedSec.children);
 
 			gsap.from(elementsToAnimate, {
-				y: 20,
+				y: 16,
 				opacity: 0,
-				duration: 0.9,
+				duration: 0.6,
 				ease: "power3.out",
-				stagger: 0.5,
+				stagger: 0.12,
 				scrollTrigger: {
 					trigger: animatedSec,
 					start: "top 85%",

@@ -1,36 +1,286 @@
 ---
 /**
  * Navigation Component
- * Uses .repel for logo/nav split and .cluster for link wrapping
+ * Premium sticky navigation header with glassmorphism, responsive mobile drawer,
+ * and design system token integration.
  */
 ---
 
-<header
-	class='padding-block-16'
-	style='border-bottom: 1px solid var(--border-weak); background: var(--background);'
->
-	<div class='container repel'>
-		<!-- Brand / Logo -->
-		<a
-			href='/'
-			class='fs-step-2'
-			style='font-weight: 700; text-decoration: none; color: var(--text);'
-		>
-			Animancy
+<header class="site-header">
+	<div class="container repel site-header__inner">
+		<!-- Brand Logo -->
+		<a href="/" class="brand" aria-label="Animancy Homepage">
+			<svg class="brand__logo" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<rect width="32" height="32" rx="6" fill="var(--text)" />
+				<path d="M8 24V8L16 20L24 8V24" stroke="var(--background)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+			<span class="brand__name fs-step-1">Animancy</span>
 		</a>
 
-		<!-- Navigation Links -->
-		<nav>
-			<ul role='list' class='cluster' style='--gutter: var(--space-16, 1rem);'>
-				<li><a href='/tea' class='fs-step-0' style='text-decoration: none;'>Teas</a></li>
-				<li><a href='/blog' class='fs-step-0' style='text-decoration: none;'>Blog</a></li>
-				<li>
-					<a href='/demo/design-system' class='fs-step-0' style='text-decoration: none;'>System</a>
-				</li>
-				<li>
-					<a href='#' class='btn btn--sm btn--primary'>Shop Now</a>
+		<!-- Desktop Navigation -->
+		<nav class="nav-desktop" aria-label="Main Navigation">
+			<ul role="list" class="cluster" style="--gutter: 1.5rem;">
+				<li><a href="/#featured" class="nav-link fs-step-0">Featured</a></li>
+				<li><a href="/#collections" class="nav-link fs-step-0">Collections</a></li>
+				<li><a href="/#articles" class="nav-link fs-step-0">Essays</a></li>
+				<li><a href="/#vue-demo" class="nav-link fs-step-0">Vue Island</a></li>
+				<li><a href="/demo/design-system" class="nav-link fs-step-0">System</a></li>
+			</ul>
+		</nav>
+
+		<!-- Action CTA & Mobile Menu Toggle -->
+		<div class="cluster" style="--gutter: 0.75rem; align-items: center;">
+			<button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+				<svg class="theme-toggle__icon theme-toggle__icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<circle cx="12" cy="12" r="5"></circle>
+					<line x1="12" y1="1" x2="12" y2="3"></line>
+					<line x1="12" y1="21" x2="12" y2="23"></line>
+					<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+					<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+					<line x1="1" y1="12" x2="3" y2="12"></line>
+					<line x1="21" y1="12" x2="23" y2="12"></line>
+					<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+					<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+				</svg>
+				<svg class="theme-toggle__icon theme-toggle__icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+				</svg>
+			</button>
+			<a href="/#featured" class="btn btn--sm btn--primary nav-cta">Browse Collection</a>
+			<button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation menu">
+				<span class="menu-toggle__bar"></span>
+				<span class="menu-toggle__bar"></span>
+				<span class="menu-toggle__bar"></span>
+			</button>
+		</div>
+	</div>
+
+	<!-- Mobile Navigation Drawer -->
+	<div id="mobile-menu" class="nav-mobile" aria-hidden="true">
+		<nav class="container">
+			<ul role="list" class="flow" style="--space: 0.75rem;">
+				<li><a href="/#featured" class="mobile-nav-link fs-step-1">Featured Series</a></li>
+				<li><a href="/#collections" class="mobile-nav-link fs-step-1">Collections</a></li>
+				<li><a href="/#articles" class="mobile-nav-link fs-step-1">Articles & Essays</a></li>
+				<li><a href="/#vue-demo" class="mobile-nav-link fs-step-1">Vue + Pinia Demo</a></li>
+				<li><a href="/demo/design-system" class="mobile-nav-link fs-step-1">Design System</a></li>
+				<li style="margin-top: 0.5rem;">
+					<a href="/#featured" class="btn btn--primary" style="width: 100%; text-align: center;">Browse Collection</a>
 				</li>
 			</ul>
 		</nav>
 	</div>
 </header>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 1000;
+		background: rgba(255, 255, 255, 0.85);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--border-weak);
+		transition: background-color 0.3s ease, border-color 0.3s ease;
+	}
+
+	:global([data-theme="dark"]) .site-header {
+		background: rgba(11, 11, 11, 0.85);
+	}
+
+	.site-header__inner {
+		padding-block: 0.85rem;
+		align-items: center;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+		text-decoration: none;
+		color: var(--text);
+		transition: opacity 0.2s ease;
+	}
+
+	.brand:hover {
+		opacity: 0.85;
+	}
+
+	.brand__name {
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	.nav-link {
+		text-decoration: none;
+		color: var(--text);
+		opacity: 0.8;
+		font-weight: 500;
+		padding-block: 0.25rem;
+		position: relative;
+		transition: opacity 0.2s ease;
+	}
+
+	.nav-link::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background-color: var(--text);
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.nav-link:hover {
+		opacity: 1;
+	}
+
+	.nav-link:hover::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	/* Mobile Toggle Button */
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 24px;
+		height: 18px;
+		background: transparent;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		z-index: 1001;
+	}
+
+	.menu-toggle__bar {
+		width: 100%;
+		height: 2px;
+		background-color: var(--text);
+		border-radius: 2px;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
+	}
+
+	/* Mobile Drawer */
+	.nav-mobile {
+		display: none;
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		background: var(--background);
+		border-bottom: 1px solid var(--border-weak);
+	}
+
+	.nav-mobile.is-active {
+		max-height: 400px;
+		padding-block: 1.5rem;
+	}
+
+	.mobile-nav-link {
+		display: block;
+		text-decoration: none;
+		color: var(--text);
+		font-weight: 600;
+		padding-block: 0.4rem;
+	}
+
+	/* Theme Toggle Styling */
+	.theme-toggle {
+		background: transparent;
+		border: 1px solid var(--border-weak);
+		border-radius: 0.375rem;
+		padding: 0.4rem;
+		color: var(--text);
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.2s ease, border-color 0.2s ease;
+	}
+
+	.theme-toggle:hover {
+		background: rgba(125, 125, 125, 0.1);
+	}
+
+	.theme-toggle__icon--sun {
+		display: block;
+	}
+
+	.theme-toggle__icon--moon {
+		display: none;
+	}
+
+	:global([data-theme="dark"]) .theme-toggle__icon--sun {
+		display: none;
+	}
+
+	:global([data-theme="dark"]) .theme-toggle__icon--moon {
+		display: block;
+	}
+
+	@media (max-width: 768px) {
+		.nav-desktop,
+		.nav-cta {
+			display: none;
+		}
+
+		.menu-toggle {
+			display: flex;
+		}
+
+		.nav-mobile {
+			display: block;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const menuToggle = document.querySelector(".menu-toggle");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+		const themeToggle = document.getElementById("theme-toggle");
+
+		if (themeToggle) {
+			themeToggle.addEventListener("click", () => {
+				const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+				const nextTheme = currentTheme === "dark" ? "light" : "dark";
+				document.documentElement.setAttribute("data-theme", nextTheme);
+				localStorage.setItem("theme", nextTheme);
+			});
+		}
+
+		if (menuToggle && mobileMenu) {
+			menuToggle.addEventListener("click", () => {
+				const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+				menuToggle.setAttribute("aria-expanded", (!isExpanded).toString());
+				mobileMenu.setAttribute("aria-hidden", isExpanded.toString());
+				mobileMenu.classList.toggle("is-active", !isExpanded);
+			});
+
+			mobileLinks.forEach((link) => {
+				link.addEventListener("click", () => {
+					menuToggle.setAttribute("aria-expanded", "false");
+					mobileMenu.setAttribute("aria-hidden", "true");
+					mobileMenu.classList.remove("is-active");
+				});
+			});
+		}
+	});
+</script>

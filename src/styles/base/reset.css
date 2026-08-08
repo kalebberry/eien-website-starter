@@ -77,5 +77,5 @@ textarea:not([rows]) {
 }
 
 :target {
-  scroll-margin-block: 5ex;
+  scroll-margin-block: 5.5rem;
 }

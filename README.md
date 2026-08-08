@@ -138,25 +138,33 @@ This template includes a set of pre-styled components that you can use and exten
 
 For interactive components ("islands of interactivity"), this template uses Astro's official **Vue.js integration**, along with **Pinia** for state management.
 
-### Hydrating Vue Components
+### Using Vue Components & Pinia
 
-Instead of using Astro's `client:*` directives, this template uses a manual hydration approach for more control. This is handled by scripts in the `/src/hydrate/` directory.
+Vue components work directly in Astro templates using standard `client:*` directives. Pinia is automatically initialized globally via `src/app.ts`.
 
 **Workflow:**
 
-1.  **Create your Vue component** (e.g., `MyComponent.vue`) in `/src/components/vue/`.
-2.  **Add a target element** with a unique ID in your `.astro` file where you want the component to appear.
-    ```html
-    <div id="my-vue-app"></div>
-    ```
-3.  **Mount the component** in a hydration script (e.g., `/src/hydrate/landing.ts`). Use the `initPinia` helper utility to mount your component and provide Pinia state management.
+1. **Create your Vue component** in `/src/components/vue/` (e.g., `ExampleComponent.vue`).
+2. **Import and render the component** in any `.astro` page with a client directive:
 
-    ```typescript
-    import { initPinia } from '@/utils/initPinia';
-    import MyComponent from '@/components/vue/MyComponent.vue';
+   ```astro
+   ---
+   import ExampleComponent from '@/components/vue/ExampleComponent.vue';
+   ---
 
-    initPinia(MyComponent, '#my-vue-app');
-    ```
+   <!-- Render Vue component as an interactive Astro island -->
+   <ExampleComponent client:load />
+   ```
+
+3. **Access Pinia Stores**: Inside your Vue component, simply import and use Pinia stores directly:
+
+   ```vue
+   <script setup lang="ts">
+   import { useTransactionsStore } from '@/stores/useTransactionsStore';
+
+   const transactionsStore = useTransactionsStore();
+   </script>
+   ```
 
 ## 📜 Available Scripts
 
