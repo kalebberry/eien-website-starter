@@ -1,0 +1,22 @@
+body {
+  font-family: var(--body-font-family, sans-serif);
+  font-weight: var(--body-font-weight, 300);
+  line-height: var(--body-line-height, 1.7);
+  background-color: var(--background, #ffffff);
+  color: var(--text, #111111);
+}
+
+:is(h1, h2, h3, h4) {
+  line-height: var(--leading-tight, 1.1);
+  text-wrap: balance;
+}
+
+:is(h4, h5, h6) {
+  font-size: var(--fs-step-3);
+}
+
+p,
+li {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}

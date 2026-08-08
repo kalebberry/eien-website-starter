@@ -1,8 +1,6 @@
-@use "../abstracts" as *;
-
 .container {
-  --padding: #{$container-min-margin-inline} * 2;
-  --max-width: #{$container-max-width};
+  --padding: calc(var(--container-min-margin-inline, clamp(0.5rem, calc(0.46rem + 0.22vw), 0.63rem)) * 2);
+  --max-width: var(--container-max-width, 65rem);
 
   width: min(100% - var(--padding), var(--max-width));
   margin-inline: auto;
@@ -10,10 +8,10 @@
 }
 
 .container[data-type="narrow"] {
-  --max-width: #{$container-max-width-narrow};
+  --max-width: var(--container-max-width-narrow, 45rem);
 }
 .container[data-type="wide"] {
-  --max-width: #{$container-max-width-wide};
+  --max-width: var(--container-max-width-wide, 100rem);
 }
 .container[data-type="full-bleed"] {
   --max-width: 100%;
@@ -23,7 +21,7 @@
   --max-width: 100%;
   --padding: 0;
 
-  @media screen and (min-width: breakpoint(large)) {
+  @media screen and (min-width: 65em) {
     display: grid;
     grid-template-columns: minmax(0, 50%) 1fr;
     margin-inline: 0;

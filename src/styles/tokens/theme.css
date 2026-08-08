@@ -1,4 +1,4 @@
-// This file is auto-generated. Do not edit.
+/* Auto-generated theme tokens. Do not edit. */
 
 [data-theme='light'] {
   color-scheme: light;
@@ -8,6 +8,7 @@
   --border: #111111;
   --border-weak: #D9D9D9;
 }
+
 [data-theme='dark'] {
   color-scheme: dark;
   --background: #0B0B0B;

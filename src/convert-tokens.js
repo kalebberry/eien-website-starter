@@ -6,8 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const TOKENS_PATH = path.join(__dirname, "../src/design-tokens/tokens.json");
-const FONT_SIZES_OUTPUT_PATH = path.join(__dirname, "../src/styles/abstracts/_font-sizes.scss");
-const THEME_OUTPUT_PATH = path.join(__dirname, "../src/styles/abstracts/_theme.scss");
+const FONT_SIZES_OUTPUT_PATH = path.join(__dirname, "../src/styles/tokens/font-sizes.css");
+const THEME_OUTPUT_PATH = path.join(__dirname, "../src/styles/tokens/theme.css");
 
 // Settings
 const BASE_SIZE = 16; // px to rem
@@ -52,7 +52,7 @@ function resolveAliases(tokens, originalTokens) {
 
 async function generateFontTokens(tokens) {
   const fontSizes = tokens.size?.font || {};
-  let output = `$font-sizes: (\n`;
+  let output = `/* Auto-generated font size tokens. Do not edit. */\n\n:root {\n`;
 
   for (const key in fontSizes) {
     const minPx = fontSizes[key].min;
@@ -68,10 +68,11 @@ async function generateFontTokens(tokens) {
     const clamp = `clamp(${round(minRem)}rem, ${round(interceptRem)}rem + ${round(
       slopeScoped
     )}${SCOPE}, ${round(maxRem)}rem)`;
-    output += `  '${key}': ${clamp},\n`;
+    output += `  --fs-${key}: ${clamp};\n`;
   }
-  output += `);\n`;
+  output += `}\n`;
 
+  await fs.mkdir(path.dirname(FONT_SIZES_OUTPUT_PATH), { recursive: true });
   await fs.writeFile(FONT_SIZES_OUTPUT_PATH, output);
   console.log(`✅ Generated font size tokens: ${FONT_SIZES_OUTPUT_PATH}`);
 }
@@ -79,16 +80,15 @@ async function generateFontTokens(tokens) {
 async function generateThemeTokens(tokens) {
   const lightTheme = tokens.color?.light || {};
   const darkTheme = tokens.color?.dark || {};
-  let output = `// This file is auto-generated. Do not edit.\n\n`;
+  let output = `/* Auto-generated theme tokens. Do not edit. */\n\n`;
 
   output += `[data-theme='light'] {\n`;
   output += `  color-scheme: light;\n`;
   for (const key in lightTheme) {
     output += `  --${key}: ${lightTheme[key].value};\n`;
   }
-  output += `}\n`;
+  output += `}\n\n`;
 
-  // Dark theme via data attribute
   output += `[data-theme='dark'] {\n`;
   output += `  color-scheme: dark;\n`;
   for (const key in darkTheme) {
@@ -96,6 +96,7 @@ async function generateThemeTokens(tokens) {
   }
   output += `}\n`;
 
+  await fs.mkdir(path.dirname(THEME_OUTPUT_PATH), { recursive: true });
   await fs.writeFile(THEME_OUTPUT_PATH, output);
   console.log(`✅ Generated theme tokens: ${THEME_OUTPUT_PATH}`);
 }

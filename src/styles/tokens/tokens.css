@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=PT+Serif:wght@400;700&display=swap");
+
+:root {
+  --ff-pt-serif: "PT Serif", serif;
+  --ff-fira-sans: "Fira Sans", sans-serif;
+
+  --font-pt-serif-regular: 400;
+  --font-pt-serif-bold: 700;
+  --font-fira-sans-light: 300;
+
+  --body-font-family: var(--ff-fira-sans);
+  --body-line-height: 1.7;
+  --body-font-weight: 300;
+
+  --container-min-margin-inline: var(--space-8);
+  --container-max-width-narrow: 45rem;
+  --container-max-width: 65rem;
+  --container-max-width-wide: 100rem;
+
+  --section-padding-block: var(--space-48);
+  --gap-width-default: var(--space-16);
+
+  --button-border-radius: 0.3em;
+  --button-padding-inline: 1.875rem;
+  --button-padding-block: 0.688rem;
+
+  --header-max-text-width: 25ch;
+  --font-text-width-default: 60ch;
+}

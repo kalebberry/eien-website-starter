@@ -1,0 +1,70 @@
+/* Font Size Utilities */
+.fs-step-000 { font-size: var(--fs-step-000); }
+.fs-step-00 { font-size: var(--fs-step-00); }
+.fs-step-0 { font-size: var(--fs-step-0); }
+.fs-step-1 { font-size: var(--fs-step-1); }
+.fs-step-2 { font-size: var(--fs-step-2); }
+.fs-step-3 { font-size: var(--fs-step-3); }
+.fs-step-4 { font-size: var(--fs-step-4); }
+.fs-step-5 { font-size: var(--fs-step-5); }
+.fs-step-6 { font-size: var(--fs-step-6); }
+.fs-step-7 { font-size: var(--fs-step-7); }
+.fs-step-8 { font-size: var(--fs-step-8); }
+.fs-step-9 { font-size: var(--fs-step-9); }
+.fs-step-10 { font-size: var(--fs-step-10); }
+.fs-step-11 { font-size: var(--fs-step-11); }
+.fs-step-12 { font-size: var(--fs-step-12); }
+
+@media (min-width: 40rem) {
+  .sm\:fs-step-000 { font-size: var(--fs-step-000); }
+  .sm\:fs-step-00 { font-size: var(--fs-step-00); }
+  .sm\:fs-step-0 { font-size: var(--fs-step-0); }
+  .sm\:fs-step-1 { font-size: var(--fs-step-1); }
+  .sm\:fs-step-2 { font-size: var(--fs-step-2); }
+  .sm\:fs-step-3 { font-size: var(--fs-step-3); }
+  .sm\:fs-step-4 { font-size: var(--fs-step-4); }
+  .sm\:fs-step-5 { font-size: var(--fs-step-5); }
+  .sm\:fs-step-6 { font-size: var(--fs-step-6); }
+  .sm\:fs-step-7 { font-size: var(--fs-step-7); }
+  .sm\:fs-step-8 { font-size: var(--fs-step-8); }
+  .sm\:fs-step-9 { font-size: var(--fs-step-9); }
+  .sm\:fs-step-10 { font-size: var(--fs-step-10); }
+  .sm\:fs-step-11 { font-size: var(--fs-step-11); }
+  .sm\:fs-step-12 { font-size: var(--fs-step-12); }
+}
+
+@media (min-width: 64rem) {
+  .md\:fs-step-000 { font-size: var(--fs-step-000); }
+  .md\:fs-step-00 { font-size: var(--fs-step-00); }
+  .md\:fs-step-0 { font-size: var(--fs-step-0); }
+  .md\:fs-step-1 { font-size: var(--fs-step-1); }
+  .md\:fs-step-2 { font-size: var(--fs-step-2); }
+  .md\:fs-step-3 { font-size: var(--fs-step-3); }
+  .md\:fs-step-4 { font-size: var(--fs-step-4); }
+  .md\:fs-step-5 { font-size: var(--fs-step-5); }
+  .md\:fs-step-6 { font-size: var(--fs-step-6); }
+  .md\:fs-step-7 { font-size: var(--fs-step-7); }
+  .md\:fs-step-8 { font-size: var(--fs-step-8); }
+  .md\:fs-step-9 { font-size: var(--fs-step-9); }
+  .md\:fs-step-10 { font-size: var(--fs-step-10); }
+  .md\:fs-step-11 { font-size: var(--fs-step-11); }
+  .md\:fs-step-12 { font-size: var(--fs-step-12); }
+}
+
+@media (min-width: 80rem) {
+  .lg\:fs-step-000 { font-size: var(--fs-step-000); }
+  .lg\:fs-step-00 { font-size: var(--fs-step-00); }
+  .lg\:fs-step-0 { font-size: var(--fs-step-0); }
+  .lg\:fs-step-1 { font-size: var(--fs-step-1); }
+  .lg\:fs-step-2 { font-size: var(--fs-step-2); }
+  .lg\:fs-step-3 { font-size: var(--fs-step-3); }
+  .lg\:fs-step-4 { font-size: var(--fs-step-4); }
+  .lg\:fs-step-5 { font-size: var(--fs-step-5); }
+  .lg\:fs-step-6 { font-size: var(--fs-step-6); }
+  .lg\:fs-step-7 { font-size: var(--fs-step-7); }
+  .lg\:fs-step-8 { font-size: var(--fs-step-8); }
+  .lg\:fs-step-9 { font-size: var(--fs-step-9); }
+  .lg\:fs-step-10 { font-size: var(--fs-step-10); }
+  .lg\:fs-step-11 { font-size: var(--fs-step-11); }
+  .lg\:fs-step-12 { font-size: var(--fs-step-12); }
+}

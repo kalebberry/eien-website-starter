@@ -1,21 +1,18 @@
-@use "../abstracts" as *;
-
 /* Hero */
 .hero--bw {
   position: relative;
-
   border-radius: 1rem;
   overflow: clip;
-}
 
-.hero--bw::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.06;
-  background: repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 22px);
-  mix-blend-mode: multiply;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background: repeating-linear-gradient(45deg, #000 0 1px, transparent 1px 22px);
+    mix-blend-mode: multiply;
+  }
 }
 
 section {
@@ -26,7 +23,17 @@ section {
 .poster {
   display: grid;
   gap: 0.5rem;
+
+  figcaption {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: center;
+    padding-block-end: 0.5rem;
+  }
 }
+
 .poster__art {
   aspect-ratio: 3/4;
   border: 1px solid var(--border);
@@ -34,17 +41,10 @@ section {
     repeating-linear-gradient(135deg, #fff 0 3px, #000 3px 4px);
   filter: grayscale(100%);
   transition: transform 0.2s ease;
-}
-.poster__art:hover {
-  transform: translateY(-2px);
-}
-.poster figcaption {
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: flex;
-  justify-content: center;
-  padding-block-end: 0.5rem;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 }
 
 /* Thumbs & cards */
@@ -54,6 +54,7 @@ section {
   background: repeating-linear-gradient(135deg, #000 0 2px, #fff 2px 4px);
   filter: grayscale(100%);
 }
+
 .card--bw {
   border: 1px solid var(--border);
   background: var(--background);
@@ -79,22 +80,27 @@ section {
   border-radius: 0.6rem;
   cursor: pointer;
   text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 }
+
 .btn--primary {
   background: #000;
   color: #fff;
 }
+
 .btn--ghost {
   background: transparent;
 }
+
 .btn--sm {
   padding: 0.45rem 0.7rem;
   font-size: var(--fs-step-00);
 }
-.btn:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
+
 .input-bw {
   inline-size: 100%;
   padding: 0.65rem 0.8rem;
@@ -125,28 +131,25 @@ section {
   border-radius: 0.5rem;
   overflow: hidden;
   background: var(--background);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.18;
+    pointer-events: none;
+    filter: grayscale(100%);
+  }
+
+  figcaption {
+    color: var(--muted);
+    z-index: 1;
+  }
 }
-.tile--bw::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.18;
-  pointer-events: none;
-  filter: grayscale(100%);
-}
-.tile--h1 {
-  block-size: 12rem;
-}
-.tile--h2 {
-  block-size: 16rem;
-}
-.tile--h3 {
-  block-size: 22rem;
-}
-.tile--bw figcaption {
-  color: var(--muted);
-  z-index: 1;
-}
+
+.tile--h1 { block-size: 12rem; }
+.tile--h2 { block-size: 16rem; }
+.tile--h3 { block-size: 22rem; }
 
 /* Utilities: subtle max width on long lines */
 #articles p {

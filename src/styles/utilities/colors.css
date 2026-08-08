@@ -1,0 +1,15 @@
+/* Color Utilities */
+.clr-background { color: var(--background); }
+.bg-background { background-color: var(--background); }
+
+.clr-text { color: var(--text); }
+.bg-text { background-color: var(--text); }
+
+.clr-muted { color: var(--muted); }
+.bg-muted { background-color: var(--muted); }
+
+.clr-border { color: var(--border); }
+.bg-border { background-color: var(--border); }
+
+.clr-border-weak { color: var(--border-weak); }
+.bg-border-weak { background-color: var(--border-weak); }
