@@ -4,29 +4,13 @@
 @layer reset, base, compositions, components, pages, utilities;
 
 /* 2. Global Tokens & Custom Properties (Unlayered Root Context) */
-@import "./tokens/font-sizes.css";
-@import "./tokens/theme.css";
-@import "./tokens/space-sizes.css";
-@import "./tokens/tokens.css";
+@import "./tokens/index.css";
 
 /* 3. Layered Stylesheets */
 @import "./base/reset.css" layer(reset);
 @import "./base/global.css" layer(base);
 
-@import "./compositions/cluster.css" layer(compositions);
-@import "./compositions/container.css" layer(compositions);
-@import "./compositions/flow.css" layer(compositions);
-@import "./compositions/grid.css" layer(compositions);
-@import "./compositions/repel.css" layer(compositions);
-@import "./compositions/sidebar.css" layer(compositions);
-@import "./compositions/switcher.css" layer(compositions);
-
-@import "./components/button.css" layer(components);
-@import "./components/card.css" layer(components);
-
+@import "./compositions/index.css" layer(compositions);
+@import "./components/index.css" layer(components);
 @import "./pages/landing.css" layer(pages);
-
-@import "./utilities/colors.css" layer(utilities);
-@import "./utilities/typography.css" layer(utilities);
-@import "./utilities/spacing.css" layer(utilities);
-@import "./utilities/tone-lines.css" layer(utilities);
+@import "./utilities/index.css" layer(utilities);
