@@ -28,9 +28,7 @@ const colorTokens = Object.keys(tokens.color.light);
             <div>
               <span class="tag">Design System Hub</span>
             </div>
-            <h1 class="fs-step-6 hero-title">
-              Interactive Playground
-            </h1>
+            <h1 class="fs-step-6 hero-title">Interactive Playground</h1>
             <p class="fs-step-1 lead hero-lead">
               Test layout engines in real time, inspect design tokens, and
               explore interactive component islands.
@@ -50,9 +48,7 @@ const colorTokens = Object.keys(tokens.color.light);
           <div>
             <span class="tag">Engine Playground</span>
           </div>
-          <h2 class="fs-step-4 section-title">
-            1. Responsive Layout Engine
-          </h2>
+          <h2 class="fs-step-4 section-title">1. Responsive Layout Engine</h2>
           <p class="fs-step-0 lead section-lead">
             Toggle between CSS Grid and Flexbox engines. Adjust gap, min item
             size, and container width dynamically.
@@ -62,9 +58,7 @@ const colorTokens = Object.keys(tokens.color.light);
         <div class="panel-controls flow">
           <div class="repel panel-header">
             <div>
-              <h3 class="fs-step-2 panel-title">
-                Interactive Controls
-              </h3>
+              <h3 class="fs-step-2 panel-title">Interactive Controls</h3>
               <p class="fs-step-00 panel-subtitle">
                 Customize parameters to test responsive track behavior.
               </p>
@@ -95,18 +89,11 @@ const colorTokens = Object.keys(tokens.color.light);
             </div>
           </div>
 
-          <div
-            class="controls-grid grid"
-            data-cols="4"
-          >
+          <div class="controls-grid grid" data-cols="4">
             <!-- Track Placement -->
-            <div
-              class="control-group flow"
-              id="placement-group"
-            >
-              <label
-                for="placement"
-                class="fs-step-00 control-label">Track Placement</label
+            <div class="control-group flow" id="placement-group">
+              <label for="placement" class="fs-step-00 control-label"
+                >Track Placement</label
               >
               <select
                 id="placement"
@@ -150,9 +137,8 @@ const colorTokens = Object.keys(tokens.color.light);
             <!-- Min Item Size Slider -->
             <div class="control-group flow">
               <div class="repel">
-                <label
-                  for="minsize"
-                  class="fs-step-00 control-label">Min Item Size</label
+                <label for="minsize" class="fs-step-00 control-label"
+                  >Min Item Size</label
                 >
                 <span id="minOut" class="fs-step-00 code-badge">240px</span>
               </div>
@@ -173,9 +159,8 @@ const colorTokens = Object.keys(tokens.color.light);
             <!-- Container Width Slider -->
             <div class="control-group flow">
               <div class="repel">
-                <label
-                  for="containerWidth"
-                  class="fs-step-00 control-label">Container Width</label
+                <label for="containerWidth" class="fs-step-00 control-label"
+                  >Container Width</label
                 >
                 <span id="widthOut" class="fs-step-00 code-badge">100%</span>
               </div>
@@ -196,19 +181,14 @@ const colorTokens = Object.keys(tokens.color.light);
         </div>
 
         <!-- LIVE PREVIEW CONTAINER -->
-        <div
-          id="demoFrame"
-          class="demo-frame"
-        >
+        <div id="demoFrame" class="demo-frame">
           <header class="repel margin-block-end-16 demo-frame-header">
             <div>
               <span id="engineBadge" class="tag engine-badge-tag"
                 >Active Engine: CSS Grid (.grid)</span
               >
             </div>
-            <span class="fs-step-00 canvas-badge"
-              >Interactive Canvas</span
-            >
+            <span class="fs-step-00 canvas-badge">Interactive Canvas</span>
           </header>
 
           <div
@@ -219,12 +199,8 @@ const colorTokens = Object.keys(tokens.color.light);
               Array.from({ length: 6 }).map((_, i) => (
                 <article class="demo-card flow">
                   <div class="repel">
-                    <h3 class="fs-step-1 demo-card-title">
-                      Card {i + 1}
-                    </h3>
-                    <span class="fs-step-00 demo-card-num">
-                      #{i + 1}
-                    </span>
+                    <h3 class="fs-step-1 demo-card-title">Card {i + 1}</h3>
+                    <span class="fs-step-00 demo-card-num">#{i + 1}</span>
                   </div>
                   <p class="fs-step-0 demo-card-desc">
                     {i === 2
@@ -241,10 +217,7 @@ const colorTokens = Object.keys(tokens.color.light);
       <hr class="section-divider" />
 
       <!-- SECTION 2: VUE + PINIA INTERACTIVE ISLAND SHOWCASE -->
-      <section
-        class="playground-section flow"
-        id="vue-demo"
-      >
+      <section class="playground-section flow" id="vue-demo">
         <div class="section-header flow">
           <div>
             <span class="tag">Interactive Component</span>
@@ -283,16 +256,16 @@ const colorTokens = Object.keys(tokens.color.light);
             </h3>
             <div class="grid gap-4 preset-grid" data-cols="2">
               <div class="preset-card flow">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Column 1
-                </h4><p class="fs-step-00 preset-card-sub">
+                <h4 class="fs-step-0 preset-card-heading">Column 1</h4><p
+                  class="fs-step-00 preset-card-sub"
+                >
                   50% width baseline
                 </p>
               </div>
               <div class="preset-card flow">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Column 2
-                </h4><p class="fs-step-00 preset-card-sub">
+                <h4 class="fs-step-0 preset-card-heading">Column 2</h4><p
+                  class="fs-step-00 preset-card-sub"
+                >
                   50% width baseline
                 </p>
               </div>
@@ -306,23 +279,23 @@ const colorTokens = Object.keys(tokens.color.light);
             </h3>
             <div class="grid gap-4 preset-grid" data-cols="3">
               <div class="preset-card flow">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Col 1
-                </h4><p class="fs-step-00 preset-card-sub">
+                <h4 class="fs-step-0 preset-card-heading">Col 1</h4><p
+                  class="fs-step-00 preset-card-sub"
+                >
                   Equal 33.3% split
                 </p>
               </div>
               <div class="preset-card flow">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Col 2
-                </h4><p class="fs-step-00 preset-card-sub">
+                <h4 class="fs-step-0 preset-card-heading">Col 2</h4><p
+                  class="fs-step-00 preset-card-sub"
+                >
                   Equal 33.3% split
                 </p>
               </div>
               <div class="preset-card flow">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Col 3
-                </h4><p class="fs-step-00 preset-card-sub">
+                <h4 class="fs-step-0 preset-card-heading">Col 3</h4><p
+                  class="fs-step-00 preset-card-sub"
+                >
                   Equal 33.3% split
                 </p>
               </div>
@@ -336,24 +309,16 @@ const colorTokens = Object.keys(tokens.color.light);
             </h3>
             <div class="grid gap-4 preset-grid-4" data-cols="4">
               <div class="preset-card-sm">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Col 1
-                </h4>
+                <h4 class="fs-step-0 preset-card-heading">Col 1</h4>
               </div>
               <div class="preset-card-sm">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Col 2
-                </h4>
+                <h4 class="fs-step-0 preset-card-heading">Col 2</h4>
               </div>
               <div class="preset-card-sm">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Col 3
-                </h4>
+                <h4 class="fs-step-0 preset-card-heading">Col 3</h4>
               </div>
               <div class="preset-card-sm">
-                <h4 class="fs-step-0 preset-card-heading">
-                  Col 4
-                </h4>
+                <h4 class="fs-step-0 preset-card-heading">Col 4</h4>
               </div>
             </div>
           </div>
@@ -385,18 +350,14 @@ const colorTokens = Object.keys(tokens.color.light);
             </h3>
             <div class="sidebar sidebar-layout">
               <aside class="flow sidebar-card">
-                <h4 class="fs-step-1 sidebar-card-title">
-                  Sidebar Area
-                </h4>
+                <h4 class="fs-step-1 sidebar-card-title">Sidebar Area</h4>
                 <p class="fs-step-0 sidebar-card-text">
                   Fixed target width that wraps underneath main content on
                   mobile screens.
                 </p>
               </aside>
               <div class="flow sidebar-card">
-                <h4 class="fs-step-1 sidebar-card-title">
-                  Main Content Area
-                </h4>
+                <h4 class="fs-step-1 sidebar-card-title">Main Content Area</h4>
                 <p class="fs-step-0 sidebar-card-text">
                   Grows dynamically to fill remaining inline room.
                 </p>
@@ -435,9 +396,7 @@ const colorTokens = Object.keys(tokens.color.light);
           <div>
             <span class="tag">Design Tokens</span>
           </div>
-          <h2 class="fs-step-4 section-title">
-            5. Token System Reference
-          </h2>
+          <h2 class="fs-step-4 section-title">5. Token System Reference</h2>
           <p class="fs-step-0 lead section-lead">
             Single source of truth generated from <code>tokens.json</code> into native
             CSS variables.
@@ -447,9 +406,7 @@ const colorTokens = Object.keys(tokens.color.light);
         <div class="flow-large tokens-container">
           <!-- Typographic Scale -->
           <div class="flow token-group">
-            <h3 class="fs-step-2 preset-title">
-              Fluid Typography Scale
-            </h3>
+            <h3 class="fs-step-2 preset-title">Fluid Typography Scale</h3>
             <div class="typography-card">
               {
                 typeScaleSteps.map((step) => (
@@ -466,9 +423,7 @@ const colorTokens = Object.keys(tokens.color.light);
 
           <!-- Color Swatches -->
           <div class="flow token-group">
-            <h3 class="fs-step-2 preset-title">
-              Color Palette Swatches
-            </h3>
+            <h3 class="fs-step-2 preset-title">Color Palette Swatches</h3>
             <div class="grid color-swatch-grid" data-cols="3">
               {
                 colorTokens.map((token) => (
@@ -478,12 +433,8 @@ const colorTokens = Object.keys(tokens.color.light);
                       style={`background-color: var(--${token});`}
                     />
                     <div>
-                      <strong class="color-swatch-label">
-                        {token}
-                      </strong>
-                      <code class="color-swatch-code">
-                        var(--{token})
-                      </code>
+                      <strong class="color-swatch-label">{token}</strong>
+                      <code class="color-swatch-code">var(--{token})</code>
                     </div>
                   </div>
                 ))
@@ -906,7 +857,8 @@ const colorTokens = Object.keys(tokens.color.light);
           tabFlex?.setAttribute("aria-selected", "false");
 
           if (playgroundGrid) {
-            playgroundGrid.className = "grid grid--fit gap-4 playground-grid-container";
+            playgroundGrid.className =
+              "grid grid--fit gap-4 playground-grid-container";
           }
           if (placementGroup) placementGroup.style.display = "flex";
           if (engineBadge)
@@ -918,7 +870,8 @@ const colorTokens = Object.keys(tokens.color.light);
           tabGrid?.setAttribute("aria-selected", "false");
 
           if (playgroundGrid) {
-            playgroundGrid.className = "flex-grid gap-4 playground-grid-container";
+            playgroundGrid.className =
+              "flex-grid gap-4 playground-grid-container";
           }
           if (placementGroup) placementGroup.style.display = "none";
           if (engineBadge)

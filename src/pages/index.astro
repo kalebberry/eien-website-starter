@@ -2,152 +2,232 @@
 import DefaultLayout from "@/Layouts/DefaultLayout.astro";
 ---
 
-<DefaultLayout title="The Johto Region — Animancy Website Starter" description="Explore the historic Johto region. A clean website example demonstrating the Animancy template system.">
-  <main>
-    <section class="container">
-      <section class="johto-about flow">
-        <header>
-          <h1>Welcome to the Johto Region</h1>
-        </header>
+<DefaultLayout
+	title="The Johto Region — Animancy Website Starter"
+	description="Explore the historic Johto region. A clean website example demonstrating the Animancy template system."
+>
+	<main class="container flow-large home-container">
+		<!-- HERO SECTION -->
+		<section class="johto-about flow hero-section">
+			<header class="flow header-flow">
+				<div>
+					<span class="tag">Example Website</span>
+				</div>
+				<h1 class="fs-step-7 hero-title">
+					Welcome to the Johto Region
+				</h1>
+				<p class="fs-step-1 lead hero-description">
+					The Johto region, a land where tradition and history blend harmoniously with the wonders of Pokémon,
+					welcomes trainers from around the world. Located west of Kanto, Johto offers a journey through ancient
+					traditions, sacred towers, and untamed wilderness.
+				</p>
+			</header>
 
-        <article class="region-intro flow">
-          <p>
-            The Johto region, a land where tradition and history blend harmoniously with the wonders of Pokémon,
-            welcomes trainers from around the world. Located west of Kanto, Johto offers a journey through ancient
-            traditions, sacred towers, and untamed wilderness.
-          </p>
-        </article>
+			<!-- REGION FEATURES -->
+			<article class="region-features flow-large content-flow">
+				<!-- TRADITION -->
+				<section class="tradition flow section-flow">
+					<h2 class="fs-step-4 section-heading">A Land of Tradition</h2>
+					<p class="fs-step-0 text-block">
+						Johto prides itself on preserving the ways of old. From the sacred Bell Tower in Ecruteak City where the
+						legendary Ho-Oh is said to perch, to the Ruins of Alph with their mysterious Unown inscriptions, history
+						echoes throughout the region. Our cities maintain traditional architecture, with Ecruteak City's dance
+						theaters and Violet City's Sprout Tower standing as testaments to our cultural heritage.
+					</p>
+				</section>
 
-        <article class="region-features flow">
-          <section class="tradition flow">
-            <h2>A Land of Tradition</h2>
-            <p>
-              Johto prides itself on preserving the ways of old. From the sacred Bell Tower in Ecruteak City where the
-              legendary Ho-Oh is said to perch, to the Ruins of Alph with their mysterious Unown inscriptions, history
-              echoes throughout the region. Our cities maintain traditional architecture, with Ecruteak City's dance
-              theaters and Violet City's Sprout Tower standing as testaments to our cultural heritage.
-            </p>
-          </section>
+				<!-- CITIES & LANDMARKS -->
+				<section class="cities flow section-flow-lg">
+					<h2 class="fs-step-4 section-heading">Cities & Landmarks</h2>
+					<p class="fs-step-0 intro-text">Explore our diverse cities, each with unique charm and character:</p>
+					<ul role="list" class="flow city-list">
+						<li><strong>New Bark Town</strong> - Where new beginnings blow like the wind</li>
+						<li><strong>Violet City</strong> - Home to the swaying Sprout Tower and the region's first Gym</li>
+						<li><strong>Azalea Town</strong> - Known for its Slowpoke Well and masterful Poké Ball craftsman</li>
+						<li><strong>Goldenrod City</strong> - The bustling metropolis featuring the Radio Tower and Department Store</li>
+						<li><strong>Ecruteak City</strong> - Where legend and history intertwine at the Burned and Bell Towers</li>
+						<li><strong>Olivine City</strong> - A port city with a magnificent lighthouse guarded by Jasmine</li>
+						<li><strong>Cianwood City</strong> - An isolated coastal town famous for its pharmacy</li>
+						<li><strong>Mahogany Town</strong> - A small, quiet town with a dark secret</li>
+						<li><strong>Blackthorn City</strong> - Nestled among mountains, home to dragon tamers</li>
+					</ul>
+				</section>
 
-          <section class="cities flow">
-            <h2>Cities & Landmarks</h2>
-            <p>Explore our diverse cities, each with unique charm and character:</p>
-            <ul role="list" class="flow">
-              <li><strong>New Bark Town</strong> - Where new beginnings blow like the wind</li>
-              <li><strong>Violet City</strong> - Home to the swaying Sprout Tower and the region's first Gym</li>
-              <li><strong>Azalea Town</strong> - Known for its Slowpoke Well and masterful Poké Ball craftsman</li>
-              <li>
-                <strong>Goldenrod City</strong> - The bustling metropolis featuring the Radio Tower and Department Store
-              </li>
-              <li>
-                <strong>Ecruteak City</strong> - Where legend and history intertwine at the Burned and Bell Towers
-              </li>
-              <li><strong>Olivine City</strong> - A port city with a magnificent lighthouse guarded by Jasmine</li>
-              <li><strong>Cianwood City</strong> - An isolated coastal town famous for its pharmacy</li>
-              <li><strong>Mahogany Town</strong> - A small, quiet town with a dark secret</li>
-              <li><strong>Blackthorn City</strong> - Nestled among mountains, home to dragon tamers</li>
-            </ul>
-          </section>
+				<!-- POKEMON LEAGUE CARDS -->
+				<section class="pokemon-league flow section-flow-lg">
+					<h2 class="fs-step-4 section-heading">Featured Landmarks</h2>
+					<div class="grid landmarks-grid" data-cols="2">
+						<div class="card">
+							<div class="image"></div>
+							<div class="content">
+								<a href="#">
+									<span class="title">Ecruteak Bell Tower</span>
+								</a>
+								<p class="desc">
+									Explore the sacred tower towering over Ecruteak City, built as a sign of friendship between humans and Pokémon.
+								</p>
+								<a class="action" href="#">
+									Find out more
+									<span aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+						<div class="card">
+							<div class="image"></div>
+							<div class="content">
+								<a href="#">
+									<span class="title">Ruins of Alph</span>
+								</a>
+								<p class="desc">
+									Investigate ancient stone chambers filled with enigmatic Unown hieroglyphs and timeless mysteries.
+								</p>
+								<a class="action" href="#">
+									Find out more
+									<span aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+						<div class="card">
+							<div class="image"></div>
+							<div class="content">
+								<a href="#">
+									<span class="title">Goldenrod Radio Tower</span>
+								</a>
+								<p class="desc">
+									Visit Johto's broadcast headquarters, broadcasting music and news across the entire region.
+								</p>
+								<a class="action" href="#">
+									Find out more
+									<span aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+						<div class="card">
+							<div class="image"></div>
+							<div class="content">
+								<a href="#">
+									<span class="title">Lake of Rage</span>
+								</a>
+								<p class="desc">
+									A serene mountain lake steeped in rumor and home to legendary dragon-type Pokémon encounters.
+								</p>
+								<a class="action" href="#">
+									Find out more
+									<span aria-hidden="true">→</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
 
-          <section class="pokemon-league flow">
-            <h2>The Pokémon League Challenge</h2>
-            <p>
-              Test your skills against our eight distinguished Gym Leaders before challenging the Elite Four and
-              Champion at the Indigo Plateau. Each Gym Leader specializes in a different type of Pokémon, presenting
-              unique strategic challenges for trainers.
-            </p>
-          </section>
+				<!-- LEGENDARY ENCOUNTERS -->
+				<section class="legendary-pokemon flow section-flow">
+					<h2 class="fs-step-4 section-heading">Legendary Encounters</h2>
+					<p class="fs-step-0 text-block">
+						Johto is blessed by the presence of legendary Pokémon that have shaped our region's mythology. The Tower
+						Duo of Ho-Oh and Lugia watch over the skies and seas, while the elusive beasts Entei, Raikou, and Suicune
+						roam our lands. Those deemed worthy may even encounter the time-traveling Celebi in the depths of Ilex
+						Forest.
+					</p>
+				</section>
+			</article>
 
-          <section class="pokemon-league-cards grid gap-6">
-            <div class="card">
-              <div class="image"></div>
-              <div class="content">
-                <a href="#">
-                  <span class="title">Ecruteak Bell Tower</span>
-                </a>
-                <p class="desc">
-                  Explore the sacred tower towering over Ecruteak City, built as a sign of friendship between humans and Pokémon.
-                </p>
-                <a class="action" href="#">
-                  Find out more
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="image"></div>
-              <div class="content">
-                <a href="#">
-                  <span class="title">Ruins of Alph</span>
-                </a>
-                <p class="desc">
-                  Investigate ancient stone chambers filled with enigmatic Unown hieroglyphs and timeless mysteries.
-                </p>
-                <a class="action" href="#">
-                  Find out more
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="image"></div>
-              <div class="content">
-                <a href="#">
-                  <span class="title">Goldenrod City Radio Tower</span>
-                </a>
-                <p class="desc">
-                  Visit Johto's broadcast headquarters, broadcasting music and news across the entire region.
-                </p>
-                <a class="action" href="#">
-                  Find out more
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </div>
-            <div class="card">
-              <div class="image"></div>
-              <div class="content">
-                <a href="#">
-                  <span class="title">Lake of Rage</span>
-                </a>
-                <p class="desc">
-                  A serene mountain lake steeped in rumor and home to legendary dragon-type Pokémon encounters.
-                </p>
-                <a class="action" href="#">
-                  Find out more
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <section class="legendary-pokemon flow">
-            <h2>Legendary Encounters</h2>
-            <p>
-              Johto is blessed by the presence of legendary Pokémon that have shaped our region's mythology. The Tower
-              Duo of Ho-Oh and Lugia watch over the skies and seas, while the elusive beasts Entei, Raikou, and Suicune
-              roam our lands. Those deemed worthy may even encounter the time-traveling Celebi in the depths of Ilex
-              Forest.
-            </p>
-          </section>
-        </article>
-
-        <aside class="visitor-info flow">
-          <h2>Plan Your Journey</h2>
-          <p>
-            Whether you're a new trainer setting out from Professor Elm's laboratory or a seasoned Pokémon Master
-            seeking new challenges, Johto welcomes you. Pack your Poké Balls, prepare your team, and embark on an
-            unforgettable adventure through our historic region.
-          </p>
-          <p>The path to becoming a Pokémon Master awaits. Will you answer the call?</p>
-
-          <nav class="journey-navigation flow">
-            <a href="#start-journey" class="btn btn--primary" aria-label="Begin your Johto journey">
-              Begin Your Johto Journey
-            </a>
-          </nav>
-        </aside>
-      </section>
-    </section>
-  </main>
+			<!-- CALL TO ACTION -->
+			<aside class="visitor-info flow cta-card">
+				<h2 class="fs-step-4 cta-title">Plan Your Journey</h2>
+				<p class="fs-step-0 cta-text">
+					Whether you're a new trainer setting out from Professor Elm's laboratory or a seasoned Pokémon Master
+					seeking new challenges, Johto welcomes you. Pack your Poké Balls, prepare your team, and embark on an
+					unforgettable adventure through our historic region.
+				</p>
+				<nav class="journey-navigation">
+					<a href="/playground" class="btn btn--primary" aria-label="Explore the design system playground">
+						Explore Design System Playground →
+					</a>
+				</nav>
+			</aside>
+		</section>
+	</main>
 </DefaultLayout>
+
+<style>
+	.home-container {
+		--space: 3.5rem;
+		padding-block: 2.5rem 5rem;
+	}
+
+	.hero-section {
+		--space: 1.5rem;
+	}
+
+	.header-flow {
+		--space: 0.75rem;
+	}
+
+	.hero-title {
+		margin: 0;
+		font-weight: 800;
+		letter-spacing: -0.02em;
+	}
+
+	.hero-description {
+		max-width: 65ch;
+		opacity: 0.85;
+		margin: 0;
+	}
+
+	.content-flow {
+		--space: 3rem;
+	}
+
+	.section-flow {
+		--space: 0.75rem;
+	}
+
+	.section-flow-lg {
+		--space: 1.25rem;
+	}
+
+	.section-heading {
+		font-weight: 700;
+	}
+
+	.text-block {
+		max-width: 75ch;
+		opacity: 0.85;
+		line-height: 1.6;
+	}
+
+	.intro-text {
+		opacity: 0.85;
+	}
+
+	.city-list {
+		--space: 0.5rem;
+		padding-left: 1.25rem;
+	}
+
+	.landmarks-grid {
+		--gutter: 1.5rem;
+		--grid-min-item-size: 16rem;
+	}
+
+	.cta-card {
+		--space: 1.25rem;
+		padding: 2rem;
+		border-radius: 1rem;
+		border: 1px solid var(--border-weak);
+		background: var(--background);
+	}
+
+	.cta-title {
+		margin: 0;
+		font-weight: 800;
+	}
+
+	.cta-text {
+		margin: 0;
+		opacity: 0.85;
+		line-height: 1.6;
+	}
+</style>
