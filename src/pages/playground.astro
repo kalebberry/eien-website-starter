@@ -1,0 +1,962 @@
+---
+import DefaultLayout from "@/Layouts/DefaultLayout.astro";
+import ExampleComponent from "@/components/vue/ExampleComponent.vue";
+import tokens from "@/design-tokens/tokens.json";
+
+const typeScaleSteps = Object.keys(tokens.size.font)
+  .map((key) => key.replace("step-", ""))
+  .filter((step) => !["11", "12"].includes(step))
+  .sort((a, b) => {
+    const valA = a.startsWith("0") ? -a.length : parseInt(a, 10);
+    const valB = b.startsWith("0") ? -b.length : parseInt(b, 10);
+    return valB - valA;
+  });
+
+const colorTokens = Object.keys(tokens.color.light);
+---
+
+<DefaultLayout
+  title="Design System & Layout Playground — Animancy"
+  description="Interactive layout engines, design system tokens, and Vue island demonstrations."
+>
+  <main class="playground-main">
+    <!-- PAGE HERO HEADER -->
+    <header class="playground-hero">
+      <div class="container flow hero-flow">
+        <div class="repel hero-repel">
+          <div class="flow hero-content">
+            <div>
+              <span class="tag">Design System Hub</span>
+            </div>
+            <h1 class="fs-step-6 hero-title">
+              Interactive Playground
+            </h1>
+            <p class="fs-step-1 lead hero-lead">
+              Test layout engines in real time, inspect design tokens, and
+              explore interactive component islands.
+            </p>
+          </div>
+          <div>
+            <a href="/" class="btn btn--ghost">← View Starter Site</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container flow-large main-content-flow">
+      <!-- SECTION 1: INTERACTIVE LAYOUT ENGINE CONTROL PANEL -->
+      <section class="playground-section flow">
+        <div class="section-header flow">
+          <div>
+            <span class="tag">Engine Playground</span>
+          </div>
+          <h2 class="fs-step-4 section-title">
+            1. Responsive Layout Engine
+          </h2>
+          <p class="fs-step-0 lead section-lead">
+            Toggle between CSS Grid and Flexbox engines. Adjust gap, min item
+            size, and container width dynamically.
+          </p>
+        </div>
+
+        <div class="panel-controls flow">
+          <div class="repel panel-header">
+            <div>
+              <h3 class="fs-step-2 panel-title">
+                Interactive Controls
+              </h3>
+              <p class="fs-step-00 panel-subtitle">
+                Customize parameters to test responsive track behavior.
+              </p>
+            </div>
+
+            <!-- Engine Selector Tabs -->
+            <div
+              class="cluster engine-selector-cluster"
+              role="tablist"
+              aria-label="Layout Engine Selector"
+            >
+              <button
+                class="btn btn--sm tab-btn active"
+                id="tab-grid"
+                role="tab"
+                aria-selected="true"
+              >
+                CSS Grid (.grid)
+              </button>
+              <button
+                class="btn btn--sm btn--ghost tab-btn"
+                id="tab-flex"
+                role="tab"
+                aria-selected="false"
+              >
+                Flexbox (.flex-grid)
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="controls-grid grid"
+            data-cols="4"
+          >
+            <!-- Track Placement -->
+            <div
+              class="control-group flow"
+              id="placement-group"
+            >
+              <label
+                for="placement"
+                class="fs-step-00 control-label">Track Placement</label
+              >
+              <select
+                id="placement"
+                class="input-select"
+                aria-label="Grid Placement"
+              >
+                <option value="auto-fit" selected
+                  >auto-fit (collapse empty tracks)</option
+                >
+                <option value="auto-fill"
+                  >auto-fill (preserve phantom tracks)</option
+                >
+              </select>
+              <span class="fs-step-00 control-desc"
+                >Controls space distribution behavior.</span
+              >
+            </div>
+
+            <!-- Gutter Slider -->
+            <div class="control-group flow">
+              <div class="repel">
+                <label for="gutter" class="fs-step-00 control-label"
+                  >Gutter (gap)</label
+                >
+                <span id="gutterOut" class="fs-step-00 code-badge">16px</span>
+              </div>
+              <input
+                id="gutter"
+                type="range"
+                min="0"
+                max="48"
+                step="4"
+                value="16"
+                class="range-slider"
+              />
+              <span class="fs-step-00 control-desc"
+                >CSS <code>gap</code> spacing.</span
+              >
+            </div>
+
+            <!-- Min Item Size Slider -->
+            <div class="control-group flow">
+              <div class="repel">
+                <label
+                  for="minsize"
+                  class="fs-step-00 control-label">Min Item Size</label
+                >
+                <span id="minOut" class="fs-step-00 code-badge">240px</span>
+              </div>
+              <input
+                id="minsize"
+                type="range"
+                min="140"
+                max="420"
+                step="10"
+                value="240"
+                class="range-slider"
+              />
+              <span class="fs-step-00 control-desc"
+                >Minimum card item width.</span
+              >
+            </div>
+
+            <!-- Container Width Slider -->
+            <div class="control-group flow">
+              <div class="repel">
+                <label
+                  for="containerWidth"
+                  class="fs-step-00 control-label">Container Width</label
+                >
+                <span id="widthOut" class="fs-step-00 code-badge">100%</span>
+              </div>
+              <input
+                id="containerWidth"
+                type="range"
+                min="360"
+                max="1200"
+                step="20"
+                value="1200"
+                class="range-slider"
+              />
+              <span class="fs-step-00 control-desc"
+                >Simulate viewport resizing.</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- LIVE PREVIEW CONTAINER -->
+        <div
+          id="demoFrame"
+          class="demo-frame"
+        >
+          <header class="repel margin-block-end-16 demo-frame-header">
+            <div>
+              <span id="engineBadge" class="tag engine-badge-tag"
+                >Active Engine: CSS Grid (.grid)</span
+              >
+            </div>
+            <span class="fs-step-00 canvas-badge"
+              >Interactive Canvas</span
+            >
+          </header>
+
+          <div
+            id="playgroundGrid"
+            class="grid grid--fit gap-4 playground-grid-container"
+          >
+            {
+              Array.from({ length: 6 }).map((_, i) => (
+                <article class="demo-card flow">
+                  <div class="repel">
+                    <h3 class="fs-step-1 demo-card-title">
+                      Card {i + 1}
+                    </h3>
+                    <span class="fs-step-00 demo-card-num">
+                      #{i + 1}
+                    </span>
+                  </div>
+                  <p class="fs-step-0 demo-card-desc">
+                    {i === 2
+                      ? "Dynamic fluid layout responding seamlessly without media queries."
+                      : "Fluid design system token item."}
+                  </p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- SECTION 2: VUE + PINIA INTERACTIVE ISLAND SHOWCASE -->
+      <section
+        class="playground-section flow"
+        id="vue-demo"
+      >
+        <div class="section-header flow">
+          <div>
+            <span class="tag">Interactive Component</span>
+          </div>
+          <h2 class="fs-step-4 section-title">2. Vue 3 + Pinia Island</h2>
+          <p class="fs-step-0 lead section-lead">
+            Client-side interactive state management rendered as an Astro island
+            (<code>client:load</code>).
+          </p>
+        </div>
+
+        <ExampleComponent client:load />
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- SECTION 3: COLUMN COUNT PRESETS -->
+      <section class="playground-section flow">
+        <div class="section-header flow">
+          <div>
+            <span class="tag">Layout Presets</span>
+          </div>
+          <h2 class="fs-step-4 section-title">
+            3. Column Count Presets (<code>data-cols</code>)
+          </h2>
+          <p class="fs-step-0 lead section-lead">
+            Apply <code>data-cols="N"</code> for instant responsive column layouts.
+          </p>
+        </div>
+
+        <div class="flow-large presets-container">
+          <!-- 2 Columns -->
+          <div class="flow preset-group">
+            <h3 class="fs-step-1 preset-title">
+              2 Columns (<code>data-cols="2"</code>)
+            </h3>
+            <div class="grid gap-4 preset-grid" data-cols="2">
+              <div class="preset-card flow">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Column 1
+                </h4><p class="fs-step-00 preset-card-sub">
+                  50% width baseline
+                </p>
+              </div>
+              <div class="preset-card flow">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Column 2
+                </h4><p class="fs-step-00 preset-card-sub">
+                  50% width baseline
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Columns -->
+          <div class="flow preset-group">
+            <h3 class="fs-step-1 preset-title">
+              3 Columns (<code>data-cols="3"</code>)
+            </h3>
+            <div class="grid gap-4 preset-grid" data-cols="3">
+              <div class="preset-card flow">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Col 1
+                </h4><p class="fs-step-00 preset-card-sub">
+                  Equal 33.3% split
+                </p>
+              </div>
+              <div class="preset-card flow">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Col 2
+                </h4><p class="fs-step-00 preset-card-sub">
+                  Equal 33.3% split
+                </p>
+              </div>
+              <div class="preset-card flow">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Col 3
+                </h4><p class="fs-step-00 preset-card-sub">
+                  Equal 33.3% split
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 Columns -->
+          <div class="flow preset-group">
+            <h3 class="fs-step-1 preset-title">
+              4 Columns (<code>data-cols="4"</code>)
+            </h3>
+            <div class="grid gap-4 preset-grid-4" data-cols="4">
+              <div class="preset-card-sm">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Col 1
+                </h4>
+              </div>
+              <div class="preset-card-sm">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Col 2
+                </h4>
+              </div>
+              <div class="preset-card-sm">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Col 3
+                </h4>
+              </div>
+              <div class="preset-card-sm">
+                <h4 class="fs-step-0 preset-card-heading">
+                  Col 4
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- SECTION 4: SPECIALIZED COMPOSITIONS -->
+      <section class="playground-section flow">
+        <div class="section-header flow">
+          <div>
+            <span class="tag">Specialized Layouts</span>
+          </div>
+          <h2 class="fs-step-4 section-title">
+            4. Intrinsic Layout Compositions
+          </h2>
+          <p class="fs-step-0 lead section-lead">
+            Pre-built architectural primitives for sidebars, carousels, and grid
+            wrapping.
+          </p>
+        </div>
+
+        <div class="flow-large compositions-container">
+          <!-- Sidebar Composition -->
+          <div class="flow comp-group">
+            <h3 class="fs-step-2 preset-title">
+              Sidebar Composition (Flex Main + Fixed Sidebar)
+            </h3>
+            <div class="sidebar sidebar-layout">
+              <aside class="flow sidebar-card">
+                <h4 class="fs-step-1 sidebar-card-title">
+                  Sidebar Area
+                </h4>
+                <p class="fs-step-0 sidebar-card-text">
+                  Fixed target width that wraps underneath main content on
+                  mobile screens.
+                </p>
+              </aside>
+              <div class="flow sidebar-card">
+                <h4 class="fs-step-1 sidebar-card-title">
+                  Main Content Area
+                </h4>
+                <p class="fs-step-0 sidebar-card-text">
+                  Grows dynamically to fill remaining inline room.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Reel -->
+          <div class="flow comp-group">
+            <h3 class="fs-step-2 preset-title">
+              The Reel (Horizontal Scroll Carousel)
+            </h3>
+            <div class="reel reel-container">
+              {
+                Array.from({ length: 6 }).map((_, i) => (
+                  <div class="flow reel-card">
+                    <h4 class="fs-step-1 sidebar-card-title">
+                      Reel Item {i + 1}
+                    </h4>
+                    <p class="fs-step-0 sidebar-card-text">
+                      Scroll horizontally with native CSS scroll-snapping.
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- SECTION 5: DESIGN TOKEN SYSTEM REFERENCE -->
+      <section class="playground-section flow">
+        <div class="section-header flow">
+          <div>
+            <span class="tag">Design Tokens</span>
+          </div>
+          <h2 class="fs-step-4 section-title">
+            5. Token System Reference
+          </h2>
+          <p class="fs-step-0 lead section-lead">
+            Single source of truth generated from <code>tokens.json</code> into native
+            CSS variables.
+          </p>
+        </div>
+
+        <div class="flow-large tokens-container">
+          <!-- Typographic Scale -->
+          <div class="flow token-group">
+            <h3 class="fs-step-2 preset-title">
+              Fluid Typography Scale
+            </h3>
+            <div class="typography-card">
+              {
+                typeScaleSteps.map((step) => (
+                  <div class="type-demo">
+                    <code>.fs-step-{step}</code>
+                    <p class={`fs-step-${step} type-demo-text`}>
+                      Sample Typography ({step})
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Color Swatches -->
+          <div class="flow token-group">
+            <h3 class="fs-step-2 preset-title">
+              Color Palette Swatches
+            </h3>
+            <div class="grid color-swatch-grid" data-cols="3">
+              {
+                colorTokens.map((token) => (
+                  <div class="color-swatch color-swatch-card">
+                    <div
+                      class="color-swatch__preview"
+                      style={`background-color: var(--${token});`}
+                    />
+                    <div>
+                      <strong class="color-swatch-label">
+                        {token}
+                      </strong>
+                      <code class="color-swatch-code">
+                        var(--{token})
+                      </code>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <style>
+    .playground-hero {
+      padding-block: 4rem 3rem;
+      background: var(--background);
+      border-bottom: 1px solid var(--border-weak);
+    }
+
+    .playground-main {
+      padding-block-end: 6rem;
+    }
+
+    .hero-flow {
+      --space: 1.5rem;
+    }
+
+    .hero-repel {
+      --gutter: 2rem;
+      align-items: flex-end;
+    }
+
+    .hero-content {
+      --space: 0.85rem;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-lead {
+      margin-block-start: 0.5rem;
+      max-width: 60ch;
+      opacity: 0.85;
+    }
+
+    .main-content-flow {
+      --space: 4.5rem;
+    }
+
+    .playground-section {
+      --space: 2.25rem;
+    }
+
+    .section-header {
+      --space: 0.85rem;
+    }
+
+    .section-title {
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .section-lead {
+      margin-block-start: 0.5rem;
+      opacity: 0.8;
+    }
+
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: var(--border-weak);
+      margin: 0;
+      opacity: 0.6;
+    }
+
+    .panel-controls {
+      --space: 2rem;
+      padding: 2.25rem;
+      border-radius: 1rem;
+      border: 1px solid var(--border-weak);
+      background: var(--background);
+    }
+
+    .panel-header {
+      --gutter: 1.5rem;
+      align-items: center;
+      border-bottom: 1px solid var(--border-weak);
+      padding-bottom: 1.5rem;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .panel-subtitle {
+      opacity: 0.75;
+      margin: 0.35rem 0 0 0;
+    }
+
+    .engine-selector-cluster {
+      --gutter: 0.5rem;
+    }
+
+    .tab-btn.active {
+      background: var(--text);
+      color: var(--background);
+      border-color: var(--text);
+    }
+
+    .controls-grid {
+      --gutter: 2rem;
+      --grid-min-item-size: 13rem;
+    }
+
+    .control-group {
+      --space: 0.5rem;
+    }
+
+    .control-label {
+      font-weight: 700;
+    }
+
+    .control-desc {
+      opacity: 0.65;
+    }
+
+    .input-select {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-weak);
+      background: var(--background);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.875rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .input-select:focus {
+      outline: none;
+      border-color: var(--text);
+    }
+
+    .range-slider {
+      width: 100%;
+      accent-color: var(--text);
+      cursor: pointer;
+    }
+
+    .code-badge {
+      font-family: monospace;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(125, 125, 125, 0.12);
+      border-radius: 0.25rem;
+    }
+
+    .demo-frame {
+      max-width: 100%;
+      margin-block-start: 1.5rem;
+      transition: max-width 0.2s ease;
+      padding: 2rem;
+      border: 1px dashed var(--border-weak);
+      border-radius: 1rem;
+      margin-inline: auto;
+      background: rgba(125, 125, 125, 0.02);
+    }
+
+    .demo-frame-header {
+      align-items: center;
+    }
+
+    .engine-badge-tag {
+      margin-block-end: 0;
+    }
+
+    .canvas-badge {
+      opacity: 0.6;
+    }
+
+    .playground-grid-container {
+      --gutter: 1.25rem;
+      --grid-min-item-size: 15rem;
+    }
+
+    .demo-card {
+      --space: 0.6rem;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-weak);
+      background: var(--background);
+    }
+
+    .demo-card-title {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .demo-card-num {
+      opacity: 0.5;
+    }
+
+    .demo-card-desc {
+      opacity: 0.8;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .presets-container {
+      --space: 3rem;
+    }
+
+    .preset-group {
+      --space: 1rem;
+    }
+
+    .preset-title {
+      font-weight: 700;
+    }
+
+    .preset-grid {
+      --gutter: 1.5rem;
+    }
+
+    .preset-grid-4 {
+      --gutter: 1.25rem;
+    }
+
+    .preset-card {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-weak);
+      --space: 0.35rem;
+    }
+
+    .preset-card-sm {
+      padding: 1.25rem;
+      text-align: center;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-weak);
+    }
+
+    .preset-card-heading {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .preset-card-sub {
+      opacity: 0.7;
+      margin: 0;
+    }
+
+    .compositions-container {
+      --space: 3.5rem;
+    }
+
+    .comp-group {
+      --space: 1.25rem;
+    }
+
+    .sidebar-layout {
+      --gutter: 1.5rem;
+      --sidebar-target-width: 18rem;
+      --sidebar-content-min-width: 55%;
+    }
+
+    .sidebar-card {
+      padding: 1.75rem;
+      --space: 0.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-weak);
+    }
+
+    .sidebar-card-title {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .sidebar-card-text {
+      opacity: 0.8;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .reel-container {
+      --gutter: 1.5rem;
+    }
+
+    .reel-card {
+      width: 18rem;
+      flex-shrink: 0;
+      padding: 1.75rem;
+      --space: 0.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-weak);
+    }
+
+    .tokens-container {
+      --space: 3rem;
+    }
+
+    .token-group {
+      --space: 1.25rem;
+    }
+
+    .typography-card {
+      padding: 1.75rem;
+      border-radius: 1rem;
+      border: 1px solid var(--border-weak);
+    }
+
+    .type-demo {
+      display: grid;
+      grid-template-columns: 14ch 1fr;
+      align-items: baseline;
+      gap: 1.75rem;
+      padding-block: 1.25rem;
+      border-bottom: 1px solid var(--border-weak);
+    }
+
+    .type-demo:last-child {
+      border-bottom: none;
+    }
+
+    .type-demo-text {
+      margin: 0;
+    }
+
+    .color-swatch-grid {
+      --gutter: 1.5rem;
+    }
+
+    .color-swatch {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .color-swatch-card {
+      border: 1px solid var(--border-weak);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+    }
+
+    .color-swatch__preview {
+      block-size: 3.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border-weak);
+    }
+
+    .color-swatch-label {
+      display: block;
+      text-transform: capitalize;
+      font-weight: 700;
+    }
+
+    .color-swatch-code {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-weak);
+      background: var(--background);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1;
+      margin-block-end: 0.75rem;
+      width: fit-content;
+    }
+
+    @media (max-width: 768px) {
+      .type-demo {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const playgroundGrid = document.getElementById("playgroundGrid");
+      const demoFrame = document.getElementById("demoFrame");
+      const engineBadge = document.getElementById("engineBadge");
+
+      const tabGrid = document.getElementById("tab-grid");
+      const tabFlex = document.getElementById("tab-flex");
+      const placementGroup = document.getElementById("placement-group");
+
+      const placement = document.getElementById(
+        "placement",
+      ) as HTMLSelectElement;
+      const gutter = document.getElementById("gutter") as HTMLInputElement;
+      const minsize = document.getElementById("minsize") as HTMLInputElement;
+      const containerWidth = document.getElementById(
+        "containerWidth",
+      ) as HTMLInputElement;
+
+      const gutterOut = document.getElementById("gutterOut");
+      const minOut = document.getElementById("minOut");
+      const widthOut = document.getElementById("widthOut");
+
+      let currentEngine: "grid" | "flex" = "grid";
+
+      function updateEngine(engine: "grid" | "flex") {
+        currentEngine = engine;
+        if (engine === "grid") {
+          tabGrid?.classList.add("active");
+          tabGrid?.setAttribute("aria-selected", "true");
+          tabFlex?.classList.remove("active");
+          tabFlex?.setAttribute("aria-selected", "false");
+
+          if (playgroundGrid) {
+            playgroundGrid.className = "grid grid--fit gap-4 playground-grid-container";
+          }
+          if (placementGroup) placementGroup.style.display = "flex";
+          if (engineBadge)
+            engineBadge.textContent = "Active Engine: CSS Grid (.grid)";
+        } else {
+          tabFlex?.classList.add("active");
+          tabFlex?.setAttribute("aria-selected", "true");
+          tabGrid?.classList.remove("active");
+          tabGrid?.setAttribute("aria-selected", "false");
+
+          if (playgroundGrid) {
+            playgroundGrid.className = "flex-grid gap-4 playground-grid-container";
+          }
+          if (placementGroup) placementGroup.style.display = "none";
+          if (engineBadge)
+            engineBadge.textContent =
+              "Active Engine: Flexbox Engine (.flex-grid)";
+        }
+      }
+
+      tabGrid?.addEventListener("click", () => updateEngine("grid"));
+      tabFlex?.addEventListener("click", () => updateEngine("flex"));
+
+      placement?.addEventListener("change", (e) => {
+        const val = (e.target as HTMLSelectElement).value;
+        if (playgroundGrid) {
+          playgroundGrid.classList.toggle("grid--fit", val === "auto-fit");
+          playgroundGrid.classList.toggle("grid--fill", val === "auto-fill");
+        }
+      });
+
+      gutter?.addEventListener("input", (e) => {
+        const val = (e.target as HTMLInputElement).value;
+        if (playgroundGrid)
+          playgroundGrid.style.setProperty("--gutter", `${val}px`);
+        if (gutterOut) gutterOut.textContent = `${val}px`;
+      });
+
+      minsize?.addEventListener("input", (e) => {
+        const val = (e.target as HTMLInputElement).value;
+        if (playgroundGrid)
+          playgroundGrid.style.setProperty("--grid-min-item-size", `${val}px`);
+        if (minOut) minOut.textContent = `${val}px`;
+      });
+
+      containerWidth?.addEventListener("input", (e) => {
+        const val = (e.target as HTMLInputElement).value;
+        if (demoFrame) demoFrame.style.maxWidth = `${val}px`;
+        if (widthOut) widthOut.textContent = `${val}px`;
+      });
+    });
+  </script>
+</DefaultLayout>
