@@ -93,11 +93,11 @@ For more explicit control, you can change the font size at specific breakpoints 
 </p>
 ```
 
----s
+---
 
 ## 4. Font Families
 
-The project uses two primary font families, imported from Google Fonts in `src/styles/abstracts/_typography.scss`:
+The project uses two primary font families, imported from Google Fonts in `src/styles/utilities/typography.css` and `src/styles/base/global.css`:
 
 - **Body & UI:** `Fira Sans` (applied to `body`)
 - **Headings:** `PT Serif` (applied to `h1`, `h2`, `h3`, `h4`)

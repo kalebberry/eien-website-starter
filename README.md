@@ -1,6 +1,6 @@
 # The Eien Framework: A Design System Template
 
-Welcome to the Eien Framework, a complete design system and website starter kit built with Astro, SCSS, and a modern token-based architecture. This template is designed for creating clean, content-focused web experiences with a calm, monochrome aesthetic inspired by manga and inkwork.
+Welcome to the Eien Framework, a complete design system and website starter kit built with Astro, modern native CSS (featuring CSS Cascade Layers `@layer`), and a token-based architecture. This template is designed for creating clean, content-focused web experiences with a calm, monochrome aesthetic inspired by manga and inkwork.
 
 The `index.astro` page serves as a living style guide and a demonstration of all core features.
 
@@ -8,18 +8,18 @@ The `index.astro` page serves as a living style guide and a demonstration of all
 
 ## 🚀 Getting Started
 
-1.  **Install Dependencies:**
+1. **Install Dependencies:**
 
     ```bash
     npm install
     ```
 
-2.  **Run the Development Server:**
+2. **Run the Development Server:**
     ```bash
     npm run dev
     ```
     This command will automatically:
-    - Generate CSS variables and SCSS maps from your design tokens.
+    - Generate CSS variables from your design tokens.
     - Start the Astro development server at `http://localhost:4321`.
 
 ---
@@ -33,17 +33,22 @@ This project is built on a clear, layered architecture that separates design dec
 This file is the **single source of truth** for your core design system. All fundamental visual properties like colors and the typographic scale are defined here.
 
 - **To change colors or typography:** Modify the values in `tokens.json`.
-- **To apply changes:** The `npm run dev` command automatically runs the `npm run tokens` script, which executes `convert-tokens.js`. This script reads `tokens.json` and generates the necessary CSS variables and SCSS maps.
+- **To apply changes:** The `npm run dev` command automatically runs the `npm run tokens` script, which executes `convert-tokens.js`. This script reads `tokens.json` and generates the necessary CSS custom properties in `src/styles/tokens/`.
 
-### 2. SCSS (`/src/styles/`)
+### 2. Modern Native CSS Architecture (`/src/styles/`)
 
-The styling is managed by a professional-grade SCSS architecture divided into logical layers:
+The styling is managed by a modern native CSS architecture organized into **CSS Cascade Layers** (`@layer`) in `src/styles/main.css`:
 
-- **/abstracts:** Contains all variables, functions, mixins, and design tokens (both token-generated and SCSS-native). This is the "brains" of the system.
-- **/base:** Global styles for the entire project, like resets and default typography for `<body>`, `<h1>`, etc.
-- **/components:** Styles for individual, reusable components like buttons and cards.
-- **/compositions:** Styles for layout patterns like the grid system.
-- **/utilities:** Low-level utility classes like `.padding-*` and `.margin-*`.
+```css
+@layer reset, base, compositions, components, pages, utilities;
+```
+
+- **/tokens:** Generated & native CSS custom properties (`font-sizes.css`, `theme.css`, `space-sizes.css`, `tokens.css`).
+- **/base:** Global styles & resets (`reset.css`, `global.css`).
+- **/compositions:** Intrinsic layout patterns (`grid.css`, `flex-grid`, `cluster.css`, `repel.css`, `sidebar.css`, `switcher.css`, `container.css`, `flow.css`).
+- **/components:** Styles for reusable UI components (`button.css`, `card.css`).
+- **/pages:** Page-specific styling rules (`landing.css`).
+- **/utilities:** Low-level utility classes (`colors.css`, `typography.css`, `spacing.css`, `tone-lines.css`).
 
 ---
 
@@ -53,12 +58,12 @@ This template provides a comprehensive set of tools to build consistent and beau
 
 ### Layouts (Grid & Flexbox)
 
-The system includes a powerful, dual-engine layout system for creating responsive page structures.
+The system includes a powerful, dual-engine layout system for creating responsive page structures without media queries.
 
-- **`.grid` (CSS Grid):** For complex, two-dimensional layouts.
+- **`.grid` (CSS Grid):** For complex, two-dimensional layouts using `repeat(auto-fit, minmax(min-size, 1fr))`.
 - **`.flex-grid` (Flexbox):** For simpler, one-dimensional wrapping rows.
 
-Both engines use a `data-cols` attribute for defining column counts and a `data-span` attribute for creating wider items.
+Both engines support `data-cols` attributes for column count presets and `data-span` for item spanning.
 
 **Example:**
 
@@ -71,11 +76,11 @@ Both engines use a `data-cols` attribute for defining column counts and a `data-
 </div>
 ```
 
-> For a complete guide, see **Grid System Documentation**.
+> For an interactive playground, visit **/demo/playground**.
 
 ### Typography
 
-The fluid typography system ensures text scales smoothly across all screen sizes. All font sizes are generated from `tokens.json`.
+The fluid typography system ensures text scales smoothly across all screen sizes using CSS `clamp()`. All font sizes are generated from `tokens.json`.
 
 **Usage:**
 
@@ -86,14 +91,11 @@ Apply `.fs-step-*` utility classes to any element to set its font size.
 <p class="fs-step-0">Body text that scales fluidly.</p>
 ```
 
-> For a complete guide, see **Typography System Documentation**.
-
 ### Spacing (Padding & Margin)
 
-The spacing system is managed within SCSS and provides a full set of utility classes for `margin` and `padding`.
+The spacing scale provides a full set of native CSS utility classes for `margin` and `padding`.
 
-- **Configuration:** The spacing scale is defined in the `$space` map inside `src/styles/abstracts/_space-sizes.scss`.
-- **Generation:** The `src/styles/utilities/_spacing.scss` file loops over this map to generate all utility classes.
+- **Generation:** The `src/styles/utilities/spacing.css` file defines utility classes powered by `--space-*` custom properties.
 
 **Usage:**
 
@@ -107,11 +109,9 @@ The spacing system is managed within SCSS and provides a full set of utility cla
 
 ### Colors
 
-All theme colors are generated from the `color` object in `tokens.json`. The system automatically generates CSS variables for both light and dark modes.
+All theme colors are generated from `tokens.json`. The system automatically generates semantic CSS variables for both light and dark modes.
 
 **Usage:**
-
-Use the semantic CSS variables in your styles.
 
 ```css
 .my-component {
@@ -174,4 +174,3 @@ All scripts are defined in `package.json`.
 - `npm run build`: Builds the site for production.
 - `npm run preview`: Previews the production build locally.
 - `npm run tokens`: Manually regenerates design tokens.
-- `npm run scss`: Manually compiles SCSS to CSS.
