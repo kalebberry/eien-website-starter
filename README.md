@@ -20,4 +20,14 @@ Vue, Pinia and GSAP remain installed for optional use in this initial migration;
 
 ## Verification
 
-Run `npm run test:architecture` to check the pinned CSS and folder structure. Build and browser validation are separate.
+Run `npm test` for architecture and token checks, or `npm run test:arch` and `npm run test:tokens` individually.
+
+For full validation, install the isolated browser tooling once:
+
+```sh
+npm run test:setup
+npm run test:browsers
+npm run validate
+```
+
+`npm run validate` runs the fast tests, builds the site, and runs browser tests. Use `npm run test:e2e` to test an existing production build. Linux CI installs browser system dependencies with `npm run test:browsers -- --with-deps`. Review dependency security separately with `npm audit`.

@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require('../../.test-tools/node_modules/@playwright/test');
 for (const width of [320,375,768,1024,1440]) {
   test('starter fits viewport '+width, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });

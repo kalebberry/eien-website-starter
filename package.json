@@ -8,7 +8,14 @@
     "preview": "astro preview",
     "astro": "astro",
     "tokens": "node src/convert-tokens.js",
-    "test:architecture": "node scripts/test-architecture.mjs"
+    "test:architecture": "npm run test:arch",
+    "test": "npm run test:arch && npm run test:tokens",
+    "test:arch": "node scripts/test-architecture.mjs",
+    "test:tokens": "npm run tokens && node --test tests/tokens.test.mjs",
+    "test:setup": "npm install --prefix .test-tools --no-package-lock --no-save @playwright/test@1.51.1",
+    "test:browsers": "node .test-tools/node_modules/@playwright/test/cli.js install chromium firefox webkit",
+    "test:e2e": "node .test-tools/node_modules/@playwright/test/cli.js test",
+    "validate": "npm test && npm run build && npm run test:e2e"
   },
   "dependencies": {
     "@astrojs/vue": "^5.1.0",

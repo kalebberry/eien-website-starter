@@ -15,10 +15,6 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm run test:architecture
-      - run: npm run build
-      - run: node --test tests/tokens.test.mjs
-      - run: npm install --prefix .test-tools --no-package-lock --no-save @playwright/test@1.51.1
-      - run: ln -s ../.test-tools/node_modules/@playwright node_modules/@playwright
-      - run: node .test-tools/node_modules/@playwright/test/cli.js install --with-deps chromium firefox webkit
-      - run: node .test-tools/node_modules/@playwright/test/cli.js test
+      - run: npm run test:setup
+      - run: npm run test:browsers -- --with-deps
+      - run: npm run validate

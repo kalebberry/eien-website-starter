@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Local browser test tooling
+.test-tools/
+playwright-report/
+test-results/
