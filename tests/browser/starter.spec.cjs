@@ -1,5 +1,26 @@
 const { test, expect } = require('../../.test-tools/node_modules/@playwright/test');
 
+function normalizeColor(color) {
+  if (!color) return '';
+  const trimmed = color.trim().toLowerCase();
+  const hex3 = trimmed.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
+  if (hex3) {
+    return `#${hex3[1]}${hex3[1]}${hex3[2]}${hex3[2]}${hex3[3]}${hex3[3]}`.toUpperCase();
+  }
+  const hex6 = trimmed.match(/^#([0-9a-f]{6})$/i);
+  if (hex6) {
+    return trimmed.toUpperCase();
+  }
+  const rgb = trimmed.match(/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+  if (rgb) {
+    const r = parseInt(rgb[1], 10).toString(16).padStart(2, '0');
+    const g = parseInt(rgb[2], 10).toString(16).padStart(2, '0');
+    const b = parseInt(rgb[3], 10).toString(16).padStart(2, '0');
+    return `#${r}${g}${b}`.toUpperCase();
+  }
+  return trimmed.toUpperCase();
+}
+
 test.describe('Eien Starter Browser Validation', () => {
   for (const width of [320, 375, 768, 1024, 1440]) {
     test('starter fits viewport ' + width, async ({ page }) => {
@@ -46,11 +67,11 @@ test.describe('Eien Starter Browser Validation', () => {
         borderWeak: s.getPropertyValue('--border-weak').trim()
       };
     });
-    expect(lightTokens.bg).toBe('#FFFFFF');
-    expect(lightTokens.text).toBe('#111111');
-    expect(lightTokens.muted).toBe('#6F6F6F');
-    expect(lightTokens.border).toBe('#111111');
-    expect(lightTokens.borderWeak).toBe('#D9D9D9');
+    expect(normalizeColor(lightTokens.bg)).toBe('#FFFFFF');
+    expect(normalizeColor(lightTokens.text)).toBe('#111111');
+    expect(normalizeColor(lightTokens.muted)).toBe('#6F6F6F');
+    expect(normalizeColor(lightTokens.border)).toBe('#111111');
+    expect(normalizeColor(lightTokens.borderWeak)).toBe('#D9D9D9');
 
     await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
     const darkTokens = await page.evaluate(() => {
@@ -63,11 +84,11 @@ test.describe('Eien Starter Browser Validation', () => {
         borderWeak: s.getPropertyValue('--border-weak').trim()
       };
     });
-    expect(darkTokens.bg).toBe('#0B0B0B');
-    expect(darkTokens.text).toBe('#EFEFEF');
-    expect(darkTokens.muted).toBe('#A0A0A0');
-    expect(darkTokens.border).toBe('#EFEFEF');
-    expect(darkTokens.borderWeak).toBe('#2A2A2A');
+    expect(normalizeColor(darkTokens.bg)).toBe('#0B0B0B');
+    expect(normalizeColor(darkTokens.text)).toBe('#EFEFEF');
+    expect(normalizeColor(darkTokens.muted)).toBe('#A0A0A0');
+    expect(normalizeColor(darkTokens.border)).toBe('#EFEFEF');
+    expect(normalizeColor(darkTokens.borderWeak)).toBe('#2A2A2A');
   });
 
   test('keyboard focus visibility styles apply to interactive elements', async ({ page }) => {
