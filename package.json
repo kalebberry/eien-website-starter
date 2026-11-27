@@ -1,7 +1,7 @@
 {
-  "name": "studio-eien-design-system",
+  "name": "eien-website-starter",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "npm run tokens && astro dev",
     "build": "npm run tokens && astro build",

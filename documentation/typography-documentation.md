@@ -27,7 +27,7 @@ Each font size variable in our system follows this structure:
 **Example:**
 
 ```css
-/* From main.css */
+/* Generated in src/styles/abstracts/font-sizes.css */
 --fs-step-2: clamp(1.1863rem, 1.0335rem + 0.6516vi, 1.62rem);
 ```
 
@@ -97,9 +97,10 @@ For more explicit control, you can change the font size at specific breakpoints 
 
 ## 4. Font Families
 
-The project uses two primary font families, imported from Google Fonts in `src/styles/utilities/typography.css` and `src/styles/base/global.css`:
+The starter intentionally does not bundle or load third-party fonts (such as Google Fonts) by default, ensuring zero remote network requests, fast performance, and user privacy out of the box.
 
-- **Body & UI:** `Fira Sans` (applied to `body`)
-- **Headings:** `PT Serif` (applied to `h1`, `h2`, `h3`, `h4`)
+System fonts are configured in `src/styles/base/global.css`:
+- **Body & UI:** `var(--body-font-family, sans-serif)` (applied to `body`)
+- **Headings:** Inherits system fonts by default
 
-This provides a clean, classic look with a sans-serif for readability and a serif for impactful headlines.
+If a project requires custom typefaces, optional token hooks are provided in `src/styles/abstracts/tokens.css` (e.g. `--ff-fira-sans`, `--ff-pt-serif`) and can be bound to self-hosted `@font-face` definitions.
