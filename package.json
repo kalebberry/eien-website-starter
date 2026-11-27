@@ -1,19 +1,27 @@
 {
-	"name": "studio-eien-design-system",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "npm run tokens && astro dev",
-		"build": "npm run tokens && astro build",
-		"preview": "astro preview",
-		"astro": "astro",
-		"tokens": "node src/convert-tokens.js"
-	},
-	"dependencies": {
-		"@astrojs/vue": "^5.1.0",
-		"astro": "^5.13.2",
-		"gsap": "^3.13.0",
-		"pinia": "^3.0.3",
-		"vue": "^3.5.17"
-	}
+  "name": "eien-website-starter",
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "npm run tokens && astro dev",
+    "build": "npm run tokens && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "tokens": "node src/convert-tokens.js",
+    "test:architecture": "npm run test:arch",
+    "test": "npm run test:arch && npm run test:tokens",
+    "test:arch": "node scripts/test-architecture.mjs",
+    "test:tokens": "npm run tokens && node --test tests/tokens.test.mjs",
+    "test:setup": "npm install --prefix .test-tools --no-package-lock --no-save @playwright/test@1.51.1",
+    "test:browsers": "node .test-tools/node_modules/@playwright/test/cli.js install chromium firefox webkit",
+    "test:e2e": "node .test-tools/node_modules/@playwright/test/cli.js test",
+    "validate": "npm test && npm run build && npm run test:e2e"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^7.1.6",
+    "astro": "^7.4.13",
+    "gsap": "^3.13.0",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.17"
+  }
 }

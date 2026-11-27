@@ -1,16 +1,19 @@
 @charset "UTF-8";
-
-/* 1. Declare Cascade Layer Order (Lowest to Highest specificity priority) */
-@layer reset, base, compositions, components, pages, utilities;
-
-/* 2. Global Tokens & Custom Properties (Unlayered Root Context) */
-@import "./tokens/index.css";
-
-/* 3. Layered Stylesheets */
+@layer reset, tokens, base, themes, kos-grid, compositions, components, pages, utilities;
 @import "./base/reset.css" layer(reset);
-@import "./base/global.css" layer(base);
-
+@import "./abstracts/index.css" layer(tokens);
+@import "./base/index.css" layer(base);
+@import "./themes/index.css" layer(themes);
+@import "./vendors/index.css";
 @import "./compositions/index.css" layer(compositions);
 @import "./components/index.css" layer(components);
-@import "./pages/landing.css" layer(pages);
+@import "./pages/index.css" layer(pages);
 @import "./utilities/index.css" layer(utilities);
+@layer compositions {
+  :root {
+    --kos-gutter: var(--space-24);
+    --kos-sys-size-desktop-sm: 45rem;
+    --kos-sys-size-desktop-lg: 65rem;
+    --kos-sys-size-widescreen: 100rem;
+  }
+}

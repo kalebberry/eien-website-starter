@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=PT+Serif:wght@400;700&display=swap");
-
 :root {
   --ff-pt-serif: "PT Serif", serif;
   --ff-fira-sans: "Fira Sans", sans-serif;
@@ -8,9 +6,9 @@
   --font-pt-serif-bold: 700;
   --font-fira-sans-light: 300;
 
-  --body-font-family: var(--ff-fira-sans);
+  --body-font-family: system-ui, sans-serif;
   --body-line-height: 1.7;
-  --body-font-weight: 300;
+  --body-font-weight: 400;
 
   --container-min-margin-inline: var(--space-8);
   --container-max-width-narrow: 45rem;

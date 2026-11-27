@@ -1,0 +1,625 @@
+/**
+ * Kōshi 格子 — Portable, dependency-free CSS layout architecture.
+ *
+ * 01. TOKENS & RESET
+ * 02. GUTTER & PLACEMENT UTILITIES
+ * 03. CONTAINERS
+ * 04. CORE GRID ENGINE & ARBITRARY TRACKS
+ * 05. COLUMN & ROW SPANS
+ * 06. CSS SUBGRID (TRACK INHERITANCE)
+ * 07. ORDER & OFFSETS
+ * 08. FLEXBOX GRID SYSTEM
+ * 09. SPECIALIZED LAYOUTS (SIDEBAR & MASONRY)
+ * 10. QUERY CONTAINERS & VERTICAL FLOW
+ * 11. ASPECT RATIO FRAMING (ANTI-CLS & HAKUGIN-HI)
+ * 12. LATTICE VISUALIZER (DEBUG MODE)
+ * 13. RESPONSIVE COMPOSITIONS & TIERED CONTAINER QUERIES
+ * 14. MOBILE FALLBACKS
+ */
+@layer kos-grid {
+
+/* -------------------------------------------------------------------------- */
+/* 01. TOKENS & RESET                                                         */
+/* -------------------------------------------------------------------------- */
+
+:root {
+	--grid-container-offset: clamp(1rem, 3.5vw, 3.5rem);
+	--container-max-width-narrow: var(--kos-sys-size-desktop-sm, 48rem);
+	--container-max-width-default: var(--kos-sys-size-desktop-lg, 75rem);
+	--container-max-width-wide: var(--kos-sys-size-widescreen, 90rem);
+	--kos-gutter: 1.5rem;
+	--kos-grid-min-item-size: 16rem;
+	--kos-debug-color: hsl(354, 70%, 54%);
+	--kos-debug-bg: hsla(354, 70%, 54%, 0.04);
+	--kos-debug-border: hsla(354, 70%, 54%, 0.35);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 02. GUTTER & PLACEMENT UTILITIES                                           */
+/* -------------------------------------------------------------------------- */
+
+.kos-gap-0 {
+	--kos-gutter: 0;
+}
+.kos-gap-2 {
+	--kos-gutter: 0.5rem;
+}
+.kos-gap-4 {
+	--kos-gutter: 1rem;
+}
+.kos-gap-6 {
+	--kos-gutter: 1.5rem;
+}
+.kos-gap-8 {
+	--kos-gutter: 2rem;
+}
+.kos-grid--fill {
+	--kos-grid-placement: auto-fill;
+}
+.kos-grid--fit {
+	--kos-grid-placement: auto-fit;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 03. CONTAINERS                                                             */
+/* -------------------------------------------------------------------------- */
+
+.kos-container {
+	--max-width: var(--container-max-width-default);
+	width: min(var(--max-width), calc(100% - var(--grid-container-offset)));
+	margin-inline: auto;
+	min-width: 0;
+	overflow-wrap: break-word;
+}
+.kos-container[container-type='narrow'] {
+	--max-width: var(--container-max-width-narrow);
+}
+.kos-container[container-type='wide'] {
+	--max-width: var(--container-max-width-wide);
+}
+.kos-container[container-type='full-bleed'] {
+	--max-width: 100%;
+	margin-inline: 0;
+	padding-inline: calc(var(--grid-container-offset) / 2);
+}
+.kos-container[container-type='full-bleed'] .kos-container__inner {
+	max-width: var(--container-max-width-default);
+	margin-inline: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 04. CORE GRID ENGINE & ARBITRARY TRACKS                                    */
+/* -------------------------------------------------------------------------- */
+
+.kos-grid {
+	display: grid;
+	grid-template-columns: repeat(
+		var(--kos-grid-placement, auto-fit),
+		minmax(min(100%, var(--kos-grid-min-item-size)), 1fr)
+	);
+	gap: var(--kos-gutter);
+	min-width: 0;
+	align-items: start;
+}
+/* A direct child span opts an otherwise intrinsic grid into twelve tracks.
+ * Explicit kos-cols always takes precedence. */
+.kos-grid:not([kos-cols]):has(> [kos-col-span]) {
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.kos-grid > * {
+	min-width: 0;
+}
+.kos-grid[kos-cols='1'] {
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='2'] {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='3'] {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='4'] {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='5'] {
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='6'] {
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='7'] {
+	grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='8'] {
+	grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='9'] {
+	grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='10'] {
+	grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='11'] {
+	grid-template-columns: repeat(11, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='12'] {
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.kos-grid[kos-cols='16'] {
+	grid-template-columns: repeat(16, minmax(0, 1fr));
+}
+
+/* Arbitrary column and span counts via CSS custom properties */
+.kos-grid[style*='--kos-cols'],
+.kos-grid[kos-cols='custom'] {
+	grid-template-columns: repeat(var(--kos-cols, 12), minmax(0, 1fr));
+}
+[style*='--kos-col-span'],
+[kos-col-span='custom'] {
+	grid-column-end: span var(--kos-col-span, 1);
+}
+[style*='--kos-row-span'],
+[kos-row-span='custom'] {
+	grid-row: span var(--kos-row-span, 1);
+}
+
+/* Progressive enhancement: typed attr() for browsers supporting CSS Values & Units 5 (Chrome 133+) */
+@supports (grid-column: span attr(test type(<integer>), 1)) {
+	.kos-grid[kos-cols]:where(:not([kos-cols='custom'])) {
+		grid-template-columns: repeat(attr(kos-cols type(<integer>), 12), minmax(0, 1fr));
+	}
+	.kos-grid > [kos-col-span]:where(:not([kos-col-span='custom'])) {
+		grid-column-end: span attr(kos-col-span type(<integer>), 1);
+	}
+	.kos-grid > [kos-row-span]:where(:not([kos-row-span='custom'])) {
+		grid-row: span attr(kos-row-span type(<integer>), 1);
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+/* 05. COLUMN & ROW SPANS                                                     */
+/* -------------------------------------------------------------------------- */
+
+[kos-col-span='1'] {
+	grid-column-end: span 1;
+}
+[kos-col-span='2'] {
+	grid-column-end: span 2;
+}
+[kos-col-span='3'] {
+	grid-column-end: span 3;
+}
+[kos-col-span='4'] {
+	grid-column-end: span 4;
+}
+[kos-col-span='5'] {
+	grid-column-end: span 5;
+}
+[kos-col-span='6'] {
+	grid-column-end: span 6;
+}
+[kos-col-span='7'] {
+	grid-column-end: span 7;
+}
+[kos-col-span='8'] {
+	grid-column-end: span 8;
+}
+[kos-col-span='9'] {
+	grid-column-end: span 9;
+}
+[kos-col-span='10'] {
+	grid-column-end: span 10;
+}
+[kos-col-span='11'] {
+	grid-column-end: span 11;
+}
+[kos-col-span='12'] {
+	grid-column-end: span 12;
+}
+
+[kos-row-span='1'] {
+	grid-row: span 1;
+}
+[kos-row-span='2'] {
+	grid-row: span 2;
+}
+[kos-row-span='3'] {
+	grid-row: span 3;
+}
+[kos-row-span='4'] {
+	grid-row: span 4;
+}
+[kos-row-span='5'] {
+	grid-row: span 5;
+}
+[kos-row-span='6'] {
+	grid-row: span 6;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 06. CSS SUBGRID (TRACK INHERITANCE)                                        */
+/* -------------------------------------------------------------------------- */
+
+[kos-subgrid],
+[kos-subgrid='rows'] {
+	display: grid;
+	grid-template-rows: subgrid;
+}
+[kos-subgrid='cols'] {
+	display: grid;
+	grid-template-columns: subgrid;
+}
+[kos-subgrid='both'] {
+	display: grid;
+	grid-template-rows: subgrid;
+	grid-template-columns: subgrid;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 07. ORDER & OFFSETS                                                        */
+/* -------------------------------------------------------------------------- */
+
+[kos-order='0'] {
+	order: 0;
+}
+[kos-order='1'] {
+	order: 1;
+}
+[kos-order='2'] {
+	order: 2;
+}
+[kos-order='3'] {
+	order: 3;
+}
+[kos-order='4'] {
+	order: 4;
+}
+[kos-order='-1'] {
+	order: -1;
+}
+[kos-order='-2'] {
+	order: -2;
+}
+[kos-order='-3'] {
+	order: -3;
+}
+[kos-order='-4'] {
+	order: -4;
+}
+[kos-offset='1'] {
+	grid-column-start: 2;
+}
+[kos-offset='2'] {
+	grid-column-start: 3;
+}
+[kos-offset='3'] {
+	grid-column-start: 4;
+}
+[kos-offset='4'] {
+	grid-column-start: 5;
+}
+[kos-offset='5'] {
+	grid-column-start: 6;
+}
+[kos-offset='6'] {
+	grid-column-start: 7;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 08. FLEXBOX GRID SYSTEM                                                    */
+/* -------------------------------------------------------------------------- */
+
+.kos-flex-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--kos-gutter);
+}
+.kos-flex-grid > * {
+	flex: 1 1 var(--kos-grid-min-item-size);
+	min-width: 0;
+}
+/* Supported numeric spans 1-12 default to flex-grow: 0 (proportional geometry & Yohaku).
+ * Invalid, unsupported, empty, or custom values fall through to flex-grow: 1.
+ * Each span includes its internal gutters. A full 12/12 span is exactly 100%.
+ * Width(s) = (s / 12) * width - ((12 - s) / 12) * gutter.
+ * For spans summing to 12, the total widths plus their outer gaps equal 100%.
+ */
+.kos-flex-grid > [kos-col-span='1'] {
+	flex-basis: calc(100% * 1 / 12 - var(--kos-gutter) * 11 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='2'] {
+	flex-basis: calc(100% * 2 / 12 - var(--kos-gutter) * 10 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='3'] {
+	flex-basis: calc(100% * 3 / 12 - var(--kos-gutter) * 9 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='4'] {
+	flex-basis: calc(100% * 4 / 12 - var(--kos-gutter) * 8 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='5'] {
+	flex-basis: calc(100% * 5 / 12 - var(--kos-gutter) * 7 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='6'] {
+	flex-basis: calc(100% * 6 / 12 - var(--kos-gutter) * 6 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='7'] {
+	flex-basis: calc(100% * 7 / 12 - var(--kos-gutter) * 5 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='8'] {
+	flex-basis: calc(100% * 8 / 12 - var(--kos-gutter) * 4 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='9'] {
+	flex-basis: calc(100% * 9 / 12 - var(--kos-gutter) * 3 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='10'] {
+	flex-basis: calc(100% * 10 / 12 - var(--kos-gutter) * 2 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='11'] {
+	flex-basis: calc(100% * 11 / 12 - var(--kos-gutter) * 1 / 12);
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-col-span='12'] {
+	flex-basis: 100%;
+	flex-grow: 0;
+}
+
+/* Explicit growth modifiers: declared after span rules to override flex-grow: 0 at equal specificity (0, 2, 0) */
+.kos-flex-grid > [kos-grow='0'] {
+	flex-grow: 0;
+}
+.kos-flex-grid > [kos-grow='1'] {
+	flex-grow: 1;
+}
+.kos-flex-grid > [kos-grow='2'] {
+	flex-grow: 2;
+}
+.kos-flex-grid > [kos-grow='3'] {
+	flex-grow: 3;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 09. SPECIALIZED LAYOUTS (SIDEBAR & MASONRY)                                */
+/* -------------------------------------------------------------------------- */
+
+.kos-sidebar-grid {
+	display: grid;
+	grid-template-columns: minmax(0, var(--kos-sidebar-width, 16rem)) minmax(0, 1fr);
+	gap: var(--kos-gutter);
+}
+.kos-masonry-grid {
+	columns: var(--kos-masonry-columns, 3);
+	column-gap: var(--kos-gutter);
+}
+.kos-masonry-grid > * {
+	break-inside: avoid;
+	margin-bottom: var(--kos-gutter);
+}
+@supports (grid-template-rows: masonry) {
+	.kos-masonry-grid {
+		display: grid;
+		grid-template-columns: repeat(var(--kos-masonry-columns, 3), minmax(0, 1fr));
+		grid-template-rows: masonry;
+		gap: var(--kos-gutter);
+		columns: auto;
+	}
+	.kos-masonry-grid > * {
+		margin-bottom: 0;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+/* 10. QUERY CONTAINERS & VERTICAL FLOW                                       */
+/* -------------------------------------------------------------------------- */
+
+.kos-cq {
+	container-type: var(--kos-container-type, inline-size);
+	container-name: var(--kos-container-name, kos-cq);
+}
+.kos-flow > * + * {
+	margin-block-start: var(--kos-flow-space, 1rem);
+}
+.kos-grid :is(img, video),
+.kos-flex-grid :is(img, video) {
+	max-width: 100%;
+	display: block;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 11. ASPECT RATIO FRAMING (ANTI-CLS & HAKUGIN-HI)                            */
+/* -------------------------------------------------------------------------- */
+
+[kos-ratio='16/9'] {
+	aspect-ratio: 16 / 9;
+}
+[kos-ratio='4/3'] {
+	aspect-ratio: 4 / 3;
+}
+[kos-ratio='1/1'],
+[kos-ratio='square'] {
+	aspect-ratio: 1 / 1;
+}
+[kos-ratio='3/4'] {
+	aspect-ratio: 3 / 4;
+}
+[kos-ratio='golden'] {
+	aspect-ratio: 1.618 / 1;
+}
+[kos-ratio='silver'] {
+	aspect-ratio: 1 / 1.414;
+}
+:is(img, video)[kos-ratio],
+[kos-ratio] > :is(img, video, iframe, picture) {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 12. LATTICE VISUALIZER (DEBUG MODE)                                        */
+/* -------------------------------------------------------------------------- */
+
+[kos-debug].kos-grid,
+[kos-debug] .kos-grid,
+.kos-composition[kos-debug] {
+	outline: 1px dashed var(--kos-debug-color);
+	outline-offset: 2px;
+}
+
+[kos-debug].kos-grid > *,
+[kos-debug] .kos-grid > * {
+	position: relative;
+	outline: 1px solid var(--kos-debug-border);
+	background-color: var(--kos-debug-bg);
+}
+
+[kos-debug].kos-grid > [kos-col-span]::after,
+[kos-debug] .kos-grid > [kos-col-span]::after {
+	content: attr(kos-col-span) ' / 12';
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.65rem;
+	font-weight: 600;
+	line-height: 1;
+	padding: 2px 4px;
+	border-radius: 2px;
+	background: var(--kos-debug-color);
+	color: #fff;
+	pointer-events: none;
+	z-index: 10;
+	letter-spacing: 0.02em;
+}
+
+[kos-debug].kos-grid > [kos-subgrid]::after,
+[kos-debug] .kos-grid > [kos-subgrid]::after {
+	content: attr(kos-col-span) ' / 12 · subgrid';
+}
+
+[kos-debug].kos-grid > [kos-offset]::before,
+[kos-debug] .kos-grid > [kos-offset]::before {
+	content: 'offset ' attr(kos-offset);
+	position: absolute;
+	bottom: 4px;
+	left: 4px;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.6rem;
+	line-height: 1;
+	padding: 2px 4px;
+	border-radius: 2px;
+	background: hsla(354, 70%, 54%, 0.15);
+	color: var(--kos-debug-color);
+	pointer-events: none;
+	z-index: 10;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 13. RESPONSIVE COMPOSITIONS & TIERED CONTAINER QUERIES                     */
+/* -------------------------------------------------------------------------- */
+
+.kos-composition {
+	container-type: inline-size;
+}
+.kos-composition + .kos-composition {
+	margin-block-start: var(--kos-section-space, clamp(2.5rem, 6vw, 6rem));
+}
+.kos-composition > .kos-grid + .kos-grid {
+	margin-block-start: var(--kos-gutter);
+}
+
+/* sm (32rem) collapse */
+@container (max-width: 32rem) {
+	.kos-composition[kos-collapse='sm'] > .kos-grid:is([kos-cols], :has(> [kos-col-span])) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.kos-composition[kos-collapse='sm'] > .kos-grid > [kos-col-span] {
+		grid-column: 1 / -1;
+		grid-row: auto;
+	}
+	.kos-composition[kos-collapse='sm'] > .kos-grid > [kos-subgrid] {
+		grid-template-rows: auto;
+		display: flex;
+		flex-direction: column;
+		gap: var(--kos-subgrid-gap, 0.75rem);
+	}
+	.kos-composition[kos-collapse='sm'] > .kos-grid > [kos-offset] {
+		grid-column-start: auto;
+	}
+}
+
+/* default & md (48rem) collapse */
+@container (max-width: 48rem) {
+	.kos-composition:not([kos-collapse='sm']):not([kos-collapse='lg']):not([kos-collapse='none']) > .kos-grid:is([kos-cols], :has(> [kos-col-span])) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.kos-composition:not([kos-collapse='sm']):not([kos-collapse='lg']):not([kos-collapse='none']) > .kos-grid > [kos-col-span] {
+		grid-column: 1 / -1;
+		grid-row: auto;
+	}
+	.kos-composition:not([kos-collapse='sm']):not([kos-collapse='lg']):not([kos-collapse='none']) > .kos-grid > [kos-subgrid] {
+		grid-template-rows: auto;
+		display: flex;
+		flex-direction: column;
+		gap: var(--kos-subgrid-gap, 0.75rem);
+	}
+	.kos-composition:not([kos-collapse='sm']):not([kos-collapse='lg']):not([kos-collapse='none']) > .kos-grid > [kos-offset] {
+		grid-column-start: auto;
+	}
+}
+
+/* lg (64rem) collapse */
+@container (max-width: 64rem) {
+	.kos-composition[kos-collapse='lg'] > .kos-grid:is([kos-cols], :has(> [kos-col-span])) {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.kos-composition[kos-collapse='lg'] > .kos-grid > [kos-col-span] {
+		grid-column: 1 / -1;
+		grid-row: auto;
+	}
+	.kos-composition[kos-collapse='lg'] > .kos-grid > [kos-subgrid] {
+		grid-template-rows: auto;
+		display: flex;
+		flex-direction: column;
+		gap: var(--kos-subgrid-gap, 0.75rem);
+	}
+	.kos-composition[kos-collapse='lg'] > .kos-grid > [kos-offset] {
+		grid-column-start: auto;
+	}
+}
+
+/* -------------------------------------------------------------------------- */
+/* 14. MOBILE FALLBACKS                                                       */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 40rem) {
+	.kos-sidebar-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.kos-masonry-grid {
+		columns: 1;
+	}
+	@supports (grid-template-rows: masonry) {
+		.kos-masonry-grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+}
+
+} /* end @layer kos-grid */

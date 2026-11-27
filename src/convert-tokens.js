@@ -6,8 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const TOKENS_PATH = path.join(__dirname, "../src/design-tokens/tokens.json");
-const FONT_SIZES_OUTPUT_PATH = path.join(__dirname, "../src/styles/tokens/font-sizes.css");
-const THEME_OUTPUT_PATH = path.join(__dirname, "../src/styles/tokens/theme.css");
+const FONT_SIZES_OUTPUT_PATH = path.join(__dirname, "../src/styles/abstracts/font-sizes.css");
+const THEME_OUTPUT_PATH = path.join(__dirname, "../src/styles/themes/theme.css");
 
 // Settings
 const BASE_SIZE = 16; // px to rem
@@ -111,4 +111,4 @@ async function main() {
   await generateThemeTokens(json);
 }
 
-main().catch(console.error);
+main().catch(error => { console.error(error); process.exitCode = 1; });
